@@ -3,7 +3,7 @@ layout: post
 title: An interesting bug in the package RandomForest
 ---
 
-#### Environment and a reproducible example
+## Environment and a reproducible example
 
 The other day I ran into this interesting bug in the randomForest package in R. I was running on R version 3.5.2, and the version of the randomForest package was 4.6.14.
 
@@ -34,7 +34,7 @@ Obviously, some sort of nonstandard evaluation technique is used to write the fu
 
 However, the function fails if we assign `"Sepal.Length"` to a new variable `var_interested`, and we pass `var_interested` to the function.
 
-#### Getting the source code
+## Getting the source code
 
 To figure out what is going wrong, we need to look at the source code. A common way to do this is to use the `print()` function.
 
@@ -56,7 +56,7 @@ Error: 'partialPlot.randomForest' is not an exported object from 'namespace:rand
 
 And this will gives us the source code.
 
-#### What really happened?
+## What really happened?
 
 The first couple of lines of the source code read
 
@@ -143,7 +143,7 @@ When we call `substitute(x.var)`, it first looks at the parse tree of the expres
 
 Since it is not a character, nor a name, it gets evaluated directly in the if-else statements, thus gives `x.var` the right value (which is `"Sepal.Length"`) in the end.
 
-#### Final thoughts: should we encourage non-standard evaluation?
+## Final thoughts: should we encourage non-standard evaluation?
 
 This is a strange bug, and it requires good understanding of advanced R to debug it. However, if we require user to supply a character string in the first place, then we would have not encounter this bug. For example, a common approach is to raise an error if `is.character(x.var)` returns `FALSE`.
 
