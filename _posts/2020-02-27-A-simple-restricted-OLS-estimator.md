@@ -42,8 +42,8 @@ beta_1_hat_c_list <- c()
 for (i in 1:1000) {
   beta_0 <- 0.2
   beta_1 <- 0.2
-  x <- rnorm(1000, mean = 0.2, sd = 1)
-  y <- beta_0 + x*beta_1 + rnorm(1000, mean = 1, sd = 3)
+  x <- rnorm(1000, mean = 0.2, sd = 0.8)
+  y <- beta_0 + x*beta_1 + rnorm(1000, mean = 1, sd = 5)
   
   beta_1_hat <- sum((x-mean(x))*y) / sum(var(x)*999)
   beta_1_hat_c <- max(beta_1_hat, 0)
@@ -54,12 +54,14 @@ for (i in 1:1000) {
 
 par(mfrow = c(1, 2))
 hist(beta_1_hat_list, main = "OLS Estimator", xlab = "Value", breaks = 20)
-abline(v = mean(beta_1_hat), col = "blue", lwd = 4)
-hist(beta_1_hat_c_list, main = "Restricted OLS Estimator", xlab = "Value", breaks = 20)
+abline(v = mean(beta_1_hat_list), col = "blue", lwd = 4)
+hist(beta_1_hat_c_list, main = "Restricted OLS Estimator", xlab = "Value", breaks = 15)
 abline(v = mean(beta_1_hat_c_list), col = "blue", lwd = 4)
 ```
 
 ![histogram_of_two]({{site.baseurl}}/assets/mean_comparison.jpeg)
+
+The average of 1000 $\hat{\beta}_1^+$ is around 0.220, while the average of $\hat{\beta}_1$ is around 0.207.
 
 ## Consistency
 Finally, $\hat{\beta}_1^+$ converges to $\hat{\beta}_1$ in probability. This is because since $\hat{\beta}_1 \to \beta_1$ in probability, so eventually $\hat{\beta}_1$ will be positive, and the probability that $\hat{\beta}_1 < 0$ can be ignored. Rigorously,
