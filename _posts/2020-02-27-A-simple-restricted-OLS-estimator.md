@@ -21,6 +21,7 @@ where $f_{\hat{\beta}_1}$ is the probability density of $\hat{\beta}_1$, the OLS
 
 ## Variance
 By sacrificing unbiasedness, hopefully we would get something in return. This is indeed the case since $\hat{\beta}_1^+$ has smaller variance. To prove this, simply notice that
+
 $$ \hat{\beta}_1 = \max \{ \hat{\beta}_1, 0 \} + \min \{ \hat{\beta}_1 , 0\} =: \hat{\beta}_1^+ + \hat{\beta}_1^-$$
 
 We have
