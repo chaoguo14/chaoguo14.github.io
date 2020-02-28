@@ -2,7 +2,6 @@
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
 permalink:           pretty
-markdown:            maruku
 # Setup
 title:               Asymptotically Trivial
 tagline:             'A personal blog on statistics, maths, and coding.'
