@@ -58,4 +58,4 @@ abline(v = mean(beta_1_hat), col = "blue", lwd = 4)
 hist(beta_1_hat_c_list, main = "Restricted OLS Estimator", xlab = "Value", breaks = 20)
 abline(v = mean(beta_1_hat_c_list), col = "blue", lwd = 4)
 ```
-![histogram_of_two](mean_comparison.jpeg)
+![histogram_of_two](chaoguo14/assets/mean_comparison.jpeg)
