@@ -58,6 +58,7 @@ abline(v = mean(beta_1_hat), col = "blue", lwd = 4)
 hist(beta_1_hat_c_list, main = "Restricted OLS Estimator", xlab = "Value", breaks = 20)
 abline(v = mean(beta_1_hat_c_list), col = "blue", lwd = 4)
 ```
+
 ![histogram_of_two]({{site.baseurl}}/assets/mean_comparison.jpeg)
 
 ## Consistency
@@ -72,3 +73,34 @@ $$\mathbb{P}\left\{ |\hat{\beta}_1 - \beta_1 | > \epsilon , \hat{\beta}_1 > 0\ri
 which goes to zero as $n\to\infty$.
 
 This is not so surprising. After all, what we have done is just to drop the estimates that are known to be wrong!
+
+```{r}
+set.seed(64)
+
+beta_1_hat_list <- c()
+beta_1_hat_c_list <- c()
+x_pos <- c()
+for (n in seq(500, 4000, length.out = 500)) {
+  for (i in 1:100) {
+    beta_0 <- 0.2
+    beta_1 <- 0.2
+    x <- rnorm(n, mean = 0.2, sd = 1)
+    y <- beta_0 + x*beta_1 + rnorm(n, mean = 1, sd = 3)
+    
+    beta_1_hat <- sum((x-mean(x))*y) / sum(var(x)*(n-1))
+    beta_1_hat_c <- max(beta_1_hat, 0)
+    
+    x_pos <- c(x_pos, n)
+    beta_1_hat_list <- c(beta_1_hat_list, beta_1_hat)
+    beta_1_hat_c_list <- c(beta_1_hat_c_list, beta_1_hat_c)
+  }
+}
+
+par(mfrow = c(2, 1))
+plot(x_pos, beta_1_hat_list, main = "OLS Estimator", xlab = "Sample Size", ylab = "Value", pch = '.')
+abline(h = 0.2)
+plot(x_pos, beta_1_hat_c_list, main = "Restricted OLS Estimator", xlab = "Sample Size", ylab = "Value", pch = '.')
+abline(h = 0.2)
+```
+
+![consistency_demo]({{site.baseurl}}/assets/restricted_consistency.jpeg)
