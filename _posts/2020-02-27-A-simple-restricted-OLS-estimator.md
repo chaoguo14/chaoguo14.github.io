@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Property of restricted OLS
+title: A simple restricted OLS estimator
 ---
 
 Last week, I attended a presentation on how to estimate large loss trend. The presentation was interesting, and raised the following question: how to incorporate prior knowledge into estimation, so that the uncertainy of the model can be reduced? This is, of course, a very important and widely-studied question. In fact, one reason why Bayesian statistics attract people is that it can incorporate prior knowledge into the model.
@@ -59,3 +59,16 @@ hist(beta_1_hat_c_list, main = "Restricted OLS Estimator", xlab = "Value", break
 abline(v = mean(beta_1_hat_c_list), col = "blue", lwd = 4)
 ```
 ![histogram_of_two]({{site.baseurl}}/assets/mean_comparison.jpeg)
+
+## Consistency
+Finally, $\hat{\beta}_1^+$ converges to $\hat{\beta}_1$ in probability. This is because since $\hat{\beta}_1 \to \beta_1$ in probability, so eventually $\hat{\beta}_1$ will be positive, and the probability that $\hat{\beta}_1 < 0$ can be ignored. Rigorously,
+
+$$ \mathbb{P}\left\{ | \max \{ \hat{\beta}_1, 0\} - \beta_1 | > \epsilon \right\} = \mathbb{P}\left\{ |\hat{\beta}_1 - \beta_1 | > \epsilon , \hat{\beta}_1 > 0\right\} + \mathbb{P}\left\{  |\beta_1| > \epsilon, \hat{\beta}_1 < 0\right\}$$
+
+The second probability is zero for sufficiently small $\epsilon$. The first probability satisfies that
+
+$$\mathbb{P}\left\{ |\hat{\beta}_1 - \beta_1 | > \epsilon , \hat{\beta}_1 > 0\right\} \le  \mathbb{P}\left\{ |\hat{\beta}_1 - \beta_1 | > \epsilon \right\}$$
+
+which goes to zero as $n\to\infty$.
+
+This is not so surprising. After all, what we have done is just to drop the estimates that are known to be wrong!
