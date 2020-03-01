@@ -13,7 +13,7 @@ Consider a simple linear regression model $y_i = \beta_0 + \beta_1 x_i + \epsilo
 In other words, since we already know that $\beta_1$ cannot be negative, we will "shrink" the OLS estimator we get $\hat{\beta}_1$ to zero if it is negative.
 
 ## Unbiasedness
-By doing so, obviously we no longer have an unbiased estimator. This is simply because, well, $\hat{\beta}_1$ is unbiased and $\hat{\beta}_1 \ne \hat{\beta}_1^+$. In fact, since $\mathbb{P}\{ \hat{\beta}_1^+ \le t\} = 0$ when $t < 0$, we can actually find an expression for the bias of $\hat{\beta}_1+$.
+By doing so, obviously we no longer have an unbiased estimator. This is simply because, well, $\hat{\beta}_1$ is unbiased and $\hat{\beta}_1 \ne \hat{\beta}_1^+$. In fact, since $\mathbb{P}\\{ \hat{\beta}_1^+ \le t\\} = 0$ when $t < 0$, we can actually find an expression for the bias of $\hat{\beta}_1+$.
 
 $$ \text{bias}\left( \hat{\beta}_1^+\right) = \mathbb{E}\left[ \hat{\beta}_1^+ \right] - \beta_1 = \int_0^\infty b\cdot f_{\hat{\beta}_1} \left(b\right) \,db - \beta_1$$
 
