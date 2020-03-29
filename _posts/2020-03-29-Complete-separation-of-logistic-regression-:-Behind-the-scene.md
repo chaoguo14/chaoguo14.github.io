@@ -2,6 +2,7 @@
 layout: post
 title: Logistic regression complete separation: Behind the scene
 ---
+
 ## What is complete separation?
 
 Assume we have data points $(x_i, y_i)$ where $y_i \in \{0, 1\}$, a binary label. Logistic regression seeks a hyperplane defined by a coefficient vector $\beta$, such that the hyperplane will separate $0$'s and $1$'s nicely. Specifically, if $x_i \beta > 0$, then we predict that $y_i = 1$. Else, then we predict that $y_i = 0$.
