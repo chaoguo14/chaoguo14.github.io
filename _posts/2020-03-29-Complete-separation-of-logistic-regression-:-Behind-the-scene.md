@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Logistic regression complete separation - What does the error message mean?
+title: Logistic regression complete separation: Behind the scene
 ---
 ## What is complete separation?
 
@@ -10,7 +10,7 @@ Often, it is impossible to correctly classify $0$'s and $1$'s perfectly with a h
 
 Complete separation does not play well with logistic regression. This is a widely known fact to practitioners. When there is complete separation, logistic regression gives extreme coefficient estimate and estimated standard error, which pretty much renders meaningful statistical inference impossible.
 
-## A typical R output
+## A typical R output and its error messages
 
 Typically, this is what you would see in R if there is complete separation. Let's create some fake data points.
 
