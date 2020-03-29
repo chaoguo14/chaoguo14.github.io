@@ -8,8 +8,6 @@ Assume we have data points $(x_i, y_i)$ where $y_i \in \{0, 1\}$, a binary label
 
 Often, it is impossible to correctly classify $0$'s and $1$'s perfectly with a hyperplane, and we will make some mistakes. However, occasionally, we can find a hyperplane that separates them perfectly. This is called **complete separation**.
 
-(insert a linear separable picture here)
-
 Complete separation does not play well with logistic regression. This is a widely known fact to practitioners. When there is complete separation, logistic regression gives extreme coefficient estimate and estimated standard error, which pretty much renders meaningful statistical inference impossible.
 
 ## A typical R output
@@ -18,7 +16,7 @@ Typically, this is what you would see in R if there is complete separation. Let'
 
 ```R
 x <- c(-1,-2,-3,1,2,3)
-y <- as.factor(1,1,1,0,0,0)
+y <- as.factor(c(1,1,1,0,0,0))
 df <- data.frame(x, y)
 model <- glm(y ~ x + 0, data = df, family = "binomial")
 ```
@@ -109,7 +107,7 @@ and $\left[-\mathbf{H}\right]_{ii}$ is small when there is complete separation.
 
 If we consider the simple case where we only have 1 covariate, then the estimated standard error is
 
-$$\text{s.e.}(\beta) = \left[\sum_{i=1}^n x_i^2 \hat{p}_i (1 - \hat{p}_i)\right]^{-1}$$
+$$\hat{\text{Var}} \left[\beta\right] = \left[\sum_{i=1}^n x_i^2 \hat{p}_i (1 - \hat{p}_i)\right]^{-1}$$
 
 Due to complete separation, $\hat{p}_i$'s are very close to 1 for each $i$'s, so $\text{s.e.}(\beta)$ will be large, since we are taking reciprocal of something that is close to zero.
 
@@ -129,4 +127,4 @@ As a result, we have
 
 $$\hat{\text{Var}}\left[ \beta_i\right] \ge \frac{1}{\left[ -\mathbf{H}\right]_{ii}}$$
 
-Since $\left[-\mathbf{H}\right]_{ii} = \sum_{j=1}^n x_{ji}^2 \cdot\hat{p}_i (1 - \hat{p}_i)$ and this is close to zero when $\hat{p}_i$ is almost 1, we will get a large estimated s.e.
+Since $\left[-\mathbf{H}\right]_{ii} = \sum_{j=1}^n x_{ji}^2\cdot\hat{p}_i^2(1 - \hat{p}_i)$ and this is close to zero when $\hat{p}_i$ is almost 1, we will get a large estimated s.e.
