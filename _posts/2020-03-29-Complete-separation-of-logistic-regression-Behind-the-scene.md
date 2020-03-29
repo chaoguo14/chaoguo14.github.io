@@ -130,6 +130,6 @@ $$\hat{\text{Var}}\left[ \beta_i\right] \ge \frac{1}{\left[ -\mathbf{H}\right]_{
 
 Since
 
-$$\left[-\mathbf{H}\right]_{ii} = \sum_{j=1}^n x_{ji}^2 \cdot \hat{p}_i (1 - \hat{p}_i)$
+$$\left[-\mathbf{H}\right]_{ii} = \sum_{j=1}^n x_{ji}^2 \cdot \hat{p}_i (1 - \hat{p}_i)$$
 
 and this is close to zero when $\hat{p}_i$ is almost 1, we will get a large estimated s.e.
