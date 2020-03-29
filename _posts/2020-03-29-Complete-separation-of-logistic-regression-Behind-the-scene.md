@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Logistic regression complete separation: Behind the scene
+title: Logistic regression complete separation - Behind the scene
 ---
 
 ## What is complete separation?
