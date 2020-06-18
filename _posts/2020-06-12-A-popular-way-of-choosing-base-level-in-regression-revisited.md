@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A popular way of choosing base level in regression: Revisited
+title: A popular way of choosing base level in regression revisited
 ---
 
 ## Set the base level to be one with populous data?
