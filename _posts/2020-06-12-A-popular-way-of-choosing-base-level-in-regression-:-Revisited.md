@@ -6,7 +6,7 @@ title: A popular way of choosing base level in regression: Revisited
 ## Set the base level to be one with populous data?
 Let's say you are running a multiple linear regression model, and you have a categorical variable (e.g. sex, which can be male or female). How do you choose the reference level (or base level) for the dummy variable? For example, if you choose "male" as the reference level, then you would define the dummy variable like this:
 
-\[ D_i = \begin{cases} 1 &\text{if i-th observation is female}\\0 &\text{if i-th observation is male} \end{cases}\]
+$$ D_i = \begin{cases} 1 &\text{if i-th observation is female}\\0 &\text{if i-th observation is male} \end{cases} $$
 
 Interestingly, there is a common "urban legend" rule on how to choose the reference level:
 
@@ -27,7 +27,7 @@ Let's dive into it, shall we?
 
 Let's consider a simple case first. We have observations $\left(d_1, y_1\right), \cdots, \left(d_n, y_n\right)$ and commonly-seen assumptions of linear regression are satisfied. The dummy variable is the only covariate, and indicates the sex of each observation. We assume there are only 2 possibilities: male, female. We consider model
 
-\[ Y_i = \beta_0 + \beta_1 D_i + \epsilon_i ,\,\,\, \epsilon_i \sim \mathcal{N}\left(0, \sigma^2\right)\]
+$$ Y_i = \beta_0 + \beta_1 D_i + \epsilon_i ,\,\,\, \epsilon_i \sim \mathcal{N}\left(0, \sigma^2\right) $$
 
 Assume there are $n_m$ males, and $n_f$ females. Should we choose male or female as the base level?
 
@@ -39,24 +39,24 @@ We claim that we should choose whichever level that has more observations. Speci
 One interesting things: the choice of base level has no impact on the variance of $\hat{\beta}_1$, the coefficient estimate of the dummy variable. In other words, choosing the "correct" base level leads to a better model by estimating the intercept better.
 
 **Proof of 1:** We know that
-\[ \hat{\beta}_1 = \frac{\sum \left(d_i - \bar{d}\right)\left(y_i - \bar{y}\right)}{\sum \left(d_i - \bar{d}\right)^2}\]
+$$ \hat{\beta}_1 = \frac{\sum \left(d_i - \bar{d}\right)\left(y_i - \bar{y}\right)}{\sum \left(d_i - \bar{d}\right)^2} $$
 
 from which we can derive that
-\[ \text{Var}\left[\hat{\beta}_1\right] = \frac{\sigma^2}{\sum \left(d_i - \bar{d}\right)^2}\]
+$$ \text{Var}\left[\hat{\beta}_1\right] = \frac{\sigma^2}{\sum \left(d_i - \bar{d}\right)^2} $$
 
 If female is the reference level, then $d_i = 1$ when the $i$-th observation is male. So
-\[ \sum \left(d_i - \bar{d}\right)^2 = \sum d_i^2 - n\left(\bar{d}\right)^2 = n_m - \frac{n_m^2}{n} = n_m\cdot \frac{n_f}{n}\]
+$$ \sum \left(d_i - \bar{d}\right)^2 = \sum d_i^2 - n\left(\bar{d}\right)^2 = n_m - \frac{n_m^2}{n} = n_m\cdot \frac{n_f}{n} $$
 
 if we recall that $n_m + n_f = n$.
 
 **Proof of 2:** We know that
-\[ \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{d}\]
+$$ \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{d} $$
 
 from which we can derive that
-\[ \text{Var}\left[\hat{\beta}_0\right] = \left(\frac{1}{n} + \frac{\bar{d}^2}{\sum \left(d_i - \bar{d}\right)^2}\right) \sigma^2\]
+$$ \text{Var}\left[\hat{\beta}_0\right] = \left(\frac{1}{n} + \frac{\bar{d}^2}{\sum \left(d_i - \bar{d}\right)^2}\right) \sigma^2 $$
 
 Assume female is the reference level, then $\bar{d}^2 = n_m^2 / n^2$, and $\sum \left(d_i - \bar{d}\right)^2 =  n_m n_f/n$. So the variance (omitting $\sigma^2$) becomes
-\[ \frac{1}{n} + \frac{\bar{d}^2}{\sum \left(d_i - \bar{d}\right)^2} = \frac{1}{n} + \frac{n_m^2}{n^2} \frac{n}{n_m n_f} = \frac{1}{n} + \frac{n_m}{n n_f} = \frac{n}{n n_f} = \frac{1}{n_f}\]
+$$ \frac{1}{n} + \frac{\bar{d}^2}{\sum \left(d_i - \bar{d}\right)^2} = \frac{1}{n} + \frac{n_m^2}{n^2} \frac{n}{n_m n_f} = \frac{1}{n} + \frac{n_m}{n n_f} = \frac{n}{n n_f} = \frac{1}{n_f} $$
 
 Now assume male is the reference level, then $\bar{d}^2 = n_f^2/n$. Similar derivation shows that statement 2 is true.
 
