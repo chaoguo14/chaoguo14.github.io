@@ -39,23 +39,29 @@ We claim that we should choose whichever level that has more observations. Speci
 One interesting things: the choice of base level has no impact on the variance of $\hat{\beta}_1$, the coefficient estimate of the dummy variable. In other words, choosing the "correct" base level leads to a better model by estimating the intercept better.
 
 **Proof of 1:** We know that
+
 $$ \hat{\beta}_1 = \frac{\sum \left(d_i - \bar{d}\right)\left(y_i - \bar{y}\right)}{\sum \left(d_i - \bar{d}\right)^2} $$
 
 from which we can derive that
+
 $$ \text{Var}\left[\hat{\beta}_1\right] = \frac{\sigma^2}{\sum \left(d_i - \bar{d}\right)^2} $$
 
 If female is the reference level, then $d_i = 1$ when the $i$-th observation is male. So
+
 $$ \sum \left(d_i - \bar{d}\right)^2 = \sum d_i^2 - n\left(\bar{d}\right)^2 = n_m - \frac{n_m^2}{n} = n_m\cdot \frac{n_f}{n} $$
 
 if we recall that $n_m + n_f = n$.
 
 **Proof of 2:** We know that
+
 $$ \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{d} $$
 
 from which we can derive that
+
 $$ \text{Var}\left[\hat{\beta}_0\right] = \left(\frac{1}{n} + \frac{\bar{d}^2}{\sum \left(d_i - \bar{d}\right)^2}\right) \sigma^2 $$
 
 Assume female is the reference level, then $\bar{d}^2 = n_m^2 / n^2$, and $\sum \left(d_i - \bar{d}\right)^2 =  n_m n_f/n$. So the variance (omitting $\sigma^2$) becomes
+
 $$ \frac{1}{n} + \frac{\bar{d}^2}{\sum \left(d_i - \bar{d}\right)^2} = \frac{1}{n} + \frac{n_m^2}{n^2} \frac{n}{n_m n_f} = \frac{1}{n} + \frac{n_m}{n n_f} = \frac{n}{n n_f} = \frac{1}{n_f} $$
 
 Now assume male is the reference level, then $\bar{d}^2 = n_f^2/n$. Similar derivation shows that statement 2 is true.
@@ -63,6 +69,6 @@ Now assume male is the reference level, then $\bar{d}^2 = n_f^2/n$. Similar deri
 _To be continued in the next post._
 
 References:
-[1]. https://stats.stackexchange.com/questions/208329/reference-level-in-glm-regression
-[2]. https://www.casact.org/pubs/monographs/papers/05-Goldburd-Khare-Tevet.pdf  page 15
-[3]. https://www.theanalysisfactor.com/strategies-dummy-coding/
+1. https://stats.stackexchange.com/questions/208329/reference-level-in-glm-regression
+2. https://www.casact.org/pubs/monographs/papers/05-Goldburd-Khare-Tevet.pdf  page 15
+3. https://www.theanalysisfactor.com/strategies-dummy-coding/
