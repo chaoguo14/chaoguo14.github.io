@@ -8,11 +8,11 @@ Let's say you are running a multiple linear regression model, and you have a cat
 
 $$ D_i = \begin{cases} 1 &\text{if i-th observation is female}\\0 &\text{if i-th observation is male} \end{cases} $$
 
-Interestingly, there is a common "urban legend" rule on how to choose the reference level:
+Interestingly, there is a widely circulated rule on how to choose the reference level:
 
-> Always choose the level with most observations as the reference level, because this gives us a coefficient estimate with smaller variance.
+> Always choose the level with the most observations as the base level, because this gives us a coefficient estimate with a smaller variance.
 
-Personally, many people have told me something similar and they work in different industries as statisticians/data scientists. I am not the only one who has experience that, neither. For example, see [1]. There are some resources that approve this approach although they fail to present a rigorous demonstration/proof. For example, see [2] and [3].
+Many people have told me something similar and they work in different industries as statisticians/data scientists. I am not the only one who has experience that, neither. For example, see [1]. There are some resources that approve this approach although they do not present a rigorous study/proof. For example, see [2] and [3].
 
 This is a strong statement, and I will investigate to what extent it is true. To save you some time,
 
@@ -21,7 +21,7 @@ This is a strong statement, and I will investigate to what extent it is true. To
 >2. In multiple linear regression, this is not always true, as we can find counter-examples easily. But it is 50% true.
 >3. In GLM, I do not know.
 
-Let's dive into it, shall we?
+Let's dive into it.
 
 ## Simple case: $y_i = \beta_0 + \beta_1 \cdot \text{sex} + \epsilon_i$
 
@@ -69,6 +69,6 @@ Now assume male is the reference level, then $\bar{d}^2 = n_f^2/n$. Similar deri
 _To be continued in the next post._
 
 References:
-1. https://stats.stackexchange.com/questions/208329/reference-level-in-glm-regression
-2. https://www.casact.org/pubs/monographs/papers/05-Goldburd-Khare-Tevet.pdf  page 15
-3. https://www.theanalysisfactor.com/strategies-dummy-coding/
+1. [https://stats.stackexchange.com/questions/208329/reference-level-in-glm-regression](https://stats.stackexchange.com/questions/208329/reference-level-in-glm-regression)
+2. Page 15 of [https://www.casact.org/pubs/monographs/papers/05-Goldburd-Khare-Tevet.pdf]([https://www.casact.org/pubs/monographs/papers/05-Goldburd-Khare-Tevet.pdf])
+3. [https://www.theanalysisfactor.com/strategies-dummy-coding/](https://www.theanalysisfactor.com/strategies-dummy-coding/)
