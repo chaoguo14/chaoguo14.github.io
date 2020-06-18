@@ -3,6 +3,8 @@ layout: post
 title: A popular way of choosing base level in regression revisited
 ---
 
+__First part written on February 13th, 2020._
+
 ## Set the base level to be one with populous data?
 Let's say you are running a multiple linear regression model, and you have a categorical variable (e.g. sex, which can be male or female). How do you choose the reference level (or base level) for the dummy variable? For example, if you choose "male" as the reference level, then you would define the dummy variable like this:
 
