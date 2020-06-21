@@ -1,3 +1,8 @@
+---
+layout: post
+title: A popular way of choosing base level in regression revisited (cont'd)
+---
+
 ### General case: with other covariates
 
 To recap, we want to examine the following statement about choosing base level for a regression model:
