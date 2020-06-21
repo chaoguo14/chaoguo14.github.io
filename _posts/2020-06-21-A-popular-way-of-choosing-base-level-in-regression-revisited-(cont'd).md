@@ -117,5 +117,4 @@ dummy_var   -0.256849636  0.6964661 -0.36878986 0.7187088
 Reference:
 1. Linear Statistical Models Second Edition. James H. Stapleton. Wiley. Section 3.5
 
-_I appreciate my friend [Changyuan Lyu]
- (https://www.linkedin.com/in/clyu/) for taking time to discuss this problem with me._
+_I appreciate my friend [Changyuan Lyu](https://www.linkedin.com/in/clyu/) for taking time to discuss this problem with me._
