@@ -21,7 +21,9 @@ We want to show a similar result, that is
 1. The variance of $\hat{\beta}_p$ (coefficient corresponds to the dummy variable) does not depend on the choice of reference level.
 2. The variance of $\hat{\beta}_0$ depends on the choice of reference level, and we should choose the group with more observations (spoiler alert: this is not true).
 
-How do we find the variance of $\hat{\beta}_p$ ? We know that $\hat{\beta} = \left(\mathbf{X}'\mathbf{X}\right)^{-1} \mathbf{X}' \mathbf{y}$ under one representation, and $\hat{\beta} = \left(\mathbf{Z}'\mathbf{Z}\right)^{-1}\mathbf{Z}' \mathbf{y}$. These two expressions do not help us much. We also know that the variance of $\hat{\beta}_i$ is $\left(\mathbf{X}'\mathbf{X}\right)^{-1}_{ii} \sigma^2$. But finding an explicit expression for $\left(\mathbf{X}'\mathbf{X}\right)^{-1}$ can be difficult, and the algebra can get pretty involved.
+How do we find the variance of $\hat{\beta}_p$ ?
+
+We know that $\hat{\beta} = \left(\mathbf{X}'\mathbf{X}\right)^{-1} \mathbf{X}' \mathbf{y}$ under one representation, and $\hat{\beta} = \left(\mathbf{Z}'\mathbf{Z}\right)^{-1}\mathbf{Z}' \mathbf{y}$. These two expressions do not help us much. We also know that the variance of $\hat{\beta}_i$ is $\left(\mathbf{X}'\mathbf{X}\right)^{-1}_{ii} \sigma^2$. But finding an explicit expression for $\left(\mathbf{X}'\mathbf{X}\right)^{-1}$ can be difficult, and the algebra can get pretty involved.
 
 Instead, we introduce another identity from [1] and use a geometric argument. Let $V_{p-1}$ be the vector space spanned by column $\mathbf{x}_1$ (the intercept), $\mathbf{x}_2, \cdots, \mathbf{x}_{p-1}$. We can project $\mathbf{x}_p$ onto $V_{p-1}$, and we denote the projected vector as $p\left(\mathbf{x}_p \mid V_{p-1}\right)$. Equivalently, we can write $\mathbf{P} \mathbf{x}_p$ where $\mathbf{P}$ is the corresponding projection matrix.
 
