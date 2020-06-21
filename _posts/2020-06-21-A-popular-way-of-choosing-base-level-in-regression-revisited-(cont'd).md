@@ -51,7 +51,7 @@ This proves the first statement.
 
 Statement 2 sounds plausible but it is false. To be fair, we have run into multiple cases where using more populous category as base level gives a smaller standard error on the intercept coefficient. However, there are numerous counterexamples. We have found one using the `mtcars` data that comes with R.
 
-```{r}
+```R
 > # vs stands for engine type (0 = V-shaped, 1 = straight).
 > # we have 18 V-shapes, and 14 straight
 > cars <- mtcars[, c("mpg","cyl","disp","vs")]
@@ -82,7 +82,7 @@ The first regression is run using V-shaped engine (which has more observations) 
 
 In this example, we have 32 observations. They are not equally distributed to two categories (14 obs vs 18 obs), but close. Here is another less balanced example, where we have 20 observations with 15 males. When we use male as base level, the standard error of the intercept coefficient is actually slightly larger.
 
-```
+```R
 > set.seed(64)
 > n <- 20
 > n_m <- 15  # First 15 obs of 20 are males
