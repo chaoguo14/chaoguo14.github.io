@@ -27,7 +27,7 @@ We know that $\hat{\beta} = \left(\mathbf{X}'\mathbf{X}\right)^{-1} \mathbf{X}' 
 
 Instead, we introduce another identity from [1] and use a geometric argument. Let $V_{p-1}$ be the vector space spanned by column $\mathbf{x}\_1$ (the intercept), $\mathbf{x}\_2, \cdots, \mathbf{x}_{p-1}$. We can project $\mathbf{x}\_p$ onto $V_{p-1}$, and we denote the projected vector as $p\left(\mathbf{x}_p \mid V_{p-1}\right)$. Equivalently, we can write $\mathbf{P} \mathbf{x}_p$ where $\mathbf{P}$ is the corresponding projection matrix.
 
-Then, we define $ \mathbf{x}_p^\perp = \mathbf{x}_p - p(\mathbf{x}_p \mid V_{p-1}) $. According to [1], we can express the variance as
+Then, we define $ \mathbf{x}\_p^\perp = \mathbf{x}\_p - p(\mathbf{x}\_p \mid V_{p-1}) $. According to [1], we can express the variance as
 
 $$ \text{Var}\left[\hat{\beta}_p\right] = \frac{\sigma^2}{\|\mathbf{x}_p^\perp\|^2} = \frac{\sigma^2}{\langle \mathbf{x}_p^\perp, \mathbf{x}_p\rangle} = \frac{\sigma^2}{\langle \mathbf{x}_p - \mathbf{P}\mathbf{x}_p, \mathbf{x}_p\rangle}. $$
 
