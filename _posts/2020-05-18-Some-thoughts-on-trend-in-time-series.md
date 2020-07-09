@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Some thoughts on "trend" of time series
-tags: statistics time-series
+tags: statistics time_series
 ---
 
 Everyone agrees that you should care about the "trend" in your time series. For example, it is a common practice to "decompose" your time series into 3 components: trend, seasonality, and randomness. You can do this easily in R using `decompose()`. However, decomposition might not be as useful as you might think, and sometimes it only confirms your bias.
