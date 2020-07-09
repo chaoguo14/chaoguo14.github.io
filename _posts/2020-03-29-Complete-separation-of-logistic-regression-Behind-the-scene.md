@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Logistic regression complete separation - Behind the scene
-tags: statistics regression logistic-regression
+tags: statistics regression logistic_regression
 ---
 
 ## What is complete separation?
