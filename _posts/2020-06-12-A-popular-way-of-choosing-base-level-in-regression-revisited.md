@@ -1,6 +1,7 @@
 ---
 layout: post
 title: A popular way of choosing base level in regression revisited
+tags: statistics regression
 ---
 
 _First part written on February 13th, 2020._
