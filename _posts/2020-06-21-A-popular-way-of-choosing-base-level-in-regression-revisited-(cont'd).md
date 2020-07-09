@@ -1,6 +1,7 @@
 ---
 layout: post
 title: A popular way of choosing base level in regression revisited (cont'd)
+tags: statistics regression
 ---
 
 ### General case: with other covariates
