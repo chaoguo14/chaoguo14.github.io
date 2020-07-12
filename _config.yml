@@ -8,6 +8,7 @@ tagline:             'A personal blog on statistics, maths, and coding.'
 description:         ''
 baseurl:             ''
 paginate:            5
+google_analytics:    UA-172453726-1
 
 # About/contact
 author:
