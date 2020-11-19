@@ -8,7 +8,7 @@ Poisson model (e.g. Poisso GLM) is often used to model count data. For example, 
 
 A Poisson variable $X$ can take values in $\{0, 1, 2, \cdots\}$. However, sometimes the zero's are censored. For example, the number of car accidents might be Poisson distributed. But, if a vehicle had zero accident, it might not get reported in the first place. We can only observe the non-zero outcomes. In such cases, Poisson is not the appropriate distribution to use. Instead, we should use zero-truncated Poisson distribution. As we will see later, misspecification will lead to incorrect parameter estimates, especially when it is very likely to observe zero.
 
-### Probability Mass Function
+### Probability mass function
 
 Recall that if $X$ is Poisson distributed with mean $\lambda$, then
 
@@ -68,3 +68,46 @@ grid.arrange(plot_1, plot_2, ncol = 1)
 ```
 
 ![two_time_series]({{site.baseurl}}/assets/374021.jpeg)
+
+In this simulation, we generate a series of samples from zero-truncated Poisson with $\lambda$ equal to $1$ and $4$, respectively. The blue points are MLE's estimated based on the correct truncated Poisson likelihood. The red points are MLE's estimated based on Poisson likelihood, which is _incorrect_, since the data are _not_ Poisson, but zero-truncated Poisson. We see that
+
+1. $\hat{\lambda}\_{MLE,trunc}$ estimates true $\lambda$ consistently
+2. $\hat{\lambda}\_{MLE}$ does not correctly estimates $\lambda$. However, the bigger the $\lambda$, the smaller the error.
+
+# MLE of generalized linear model
+
+Similar conclusion holds for Poisson/zero-truncated Poisson GLM. Under a zero-truncated Poisson GLM (with log-link), observations $y_i$'s are generated form a zero-truncated Poisson distribution:
+
+$$ \mathbb{P}\{Y_i = y_i\} = \frac{e^{-\lambda_i} \lambda_i^{y_i}}{(1 - e^{-\lambda_i}) y_i!}$$
+
+where $\log(\lambda_i) = x_i^T \beta$.
+
+We first generate 5,000 $(x\_1, \cdots, x\_5)_i$ from a normal distribution with mean $m$ and s.d. $1$. Then, we generate 5,000 $y\_i$ from a zero-truncated Poisson with mean $\lambda := exp(x_i^T \beta)$, where $\beta = (-0.05, 0.15, -0.25, 0.2, 1)$. The whole process is repeated for different values of $m$'s.
+
+For each $m$, we fit a zero-truncated Poisson GLM and a Poisson GLM. We then compute the MSE between estimates and true parameters.
+
+```R
+set.seed(233)
+true_param <- c(-0.05, 0.15, -0.25, 0.2, 1)
+
+mse_poisson <- c()
+mse_ztpoisson <- c()
+
+for (m in seq(-2, 2, by = 0.025)) {
+  X <- matrix(rnorm(n = 5000*5, mean = m, sd = 1), nrow = 5000, ncol = 5) %>% data.frame()
+  X$lambda <- exp(-0.05*(X$X1) + 0.15*(X$X2) - 0.25*(X$X3) + 0.2*(X$X4) + 1*(X$X5))
+  X$y <- rtpois(n = length(X$lambda), lambda = X$lambda, a = 0, b = Inf)
+  X$lambda <- NULL
+  
+  mse_poisson <- c(mse_poisson, mean((glm2(y ~ . - 1, data = X, family = poisson(), control = list(maxit = 200))$coefficients - true_param)^2))
+  mse_ztpoisson <- c(mse_ztpoisson, mean((glm2(y ~ . - 1, data = X, family = ztpoisson(), control = list(maxit = 200))$coefficients - true_param)^2))
+}
+
+plot_df <- data.frame(mse_poisson, mse_ztpoisson, lambda = exp(seq(-2, 2, by = 0.025) * sum(true_param))) %>%
+  tidyr::pivot_longer(cols = c("mse_poisson", "mse_ztpoisson")) %>%
+  arrange(lambda)
+
+ggplot(data = plot_df, aes(x = lambda, y = value, colour = name)) + geom_point() +
+  labs(title = "Deviation from true coefficients (MSE)") + xlab("Lambda") + ylab("MSE") +
+  theme_minimal()
+```
