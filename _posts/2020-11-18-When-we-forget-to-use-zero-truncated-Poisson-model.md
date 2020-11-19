@@ -74,7 +74,7 @@ In this simulation, we generate a series of samples from zero-truncated Poisson 
 1. $\hat{\lambda}\_{MLE,trunc}$ estimates true $\lambda$ consistently
 2. $\hat{\lambda}\_{MLE}$ does not correctly estimates $\lambda$. However, the bigger the $\lambda$, the smaller the error.
 
-# MLE of generalized linear model
+### MLE of generalized linear model
 
 Similar conclusion holds for Poisson/zero-truncated Poisson GLM. Under a zero-truncated Poisson GLM (with log-link), observations $y_i$'s are generated form a zero-truncated Poisson distribution:
 
