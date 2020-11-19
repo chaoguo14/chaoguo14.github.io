@@ -82,7 +82,7 @@ $$ \mathbb{P}\{Y_i = y_i\} = \frac{e^{-\lambda_i} \lambda_i^{y_i}}{(1 - e^{-\lam
 
 where $\log(\lambda_i) = x_i^T \beta$.
 
-We first generate 5,000 $(x\_1, \cdots, x\_5)_i$ from a normal distribution with mean $m$ and s.d. $1$. Then, we generate 5,000 $y\_i$ from a zero-truncated Poisson with mean $\lambda := exp(x_i^T \beta)$, where $\beta = (-0.05, 0.15, -0.25, 0.2, 1)$. The whole process is repeated for different values of $m$'s.
+We first generate 5,000 $(x\_1, \cdots, x\_5)_i$ from a normal distribution with mean $m$ and s.d. $1$. Then, we generate 5,000 $y\_i$ from a zero-truncated Poisson with mean $\lambda := \exp(x_i^T \beta)$, where $\beta = (-0.05, 0.15, -0.25, 0.2, 1)$. The whole process is repeated for different values of $m$'s.
 
 For each $m$, we fit a zero-truncated Poisson GLM and a Poisson GLM. We then compute the MSE between estimates and true parameters.
 
@@ -111,3 +111,7 @@ ggplot(data = plot_df, aes(x = lambda, y = value, colour = name)) + geom_point()
   labs(title = "Deviation from true coefficients (MSE)") + xlab("Lambda") + ylab("MSE") +
   theme_minimal()
 ```
+
+![two_time_series]({{site.baseurl}}/assets/69422.jpeg)
+
+From this plot, we see that the bigger the $\lambda$, the smaller the difference. This agrees with our previous conclusion: When $\lambda$ is large enough, the difference between zero-truncated Poisson and Poisson becomes very small, since $\mathbb{P}\{Y_i = 0\} = e^{-\lambda} = e^{-e^{x'\beta}}$ becomes negligible. In fact, for this particular simulation, we can see that the difference becomes small when $\lambda = 1$. This translates to $\mathbb{P}\{Y_i = 0\} = 0.3679$ (abusing notation here). In other words, if the underlying _uncensored_ Poisson variable is zero about 36.79% of the time (or more), than it would be really bad if we forgot to use zero-truncated Poisson GLM.
