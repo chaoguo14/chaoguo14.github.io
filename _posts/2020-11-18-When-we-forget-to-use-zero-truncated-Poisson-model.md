@@ -28,7 +28,7 @@ $$ \frac{\lambda}{1 - e^{-\lambda}} = \bar{z}_n$$
 
 for $\lambda$, which we denote as $\hat{\lambda}_{MLE, trunc}$.
 
-This has no closed form solution. And this is different from the MLE for the untruncated Poisson, which is just $\hat{\lambda}_{MLE} =\bar{z}_n$. However, if the zero has a fairly small probability (i.e. $e^{-\lambda}$ is very small), then $\hat{\lambda}_{MLE}$ and $\hat{\lambda}_{MLE, trunc}$ will be quite close. This makes intuitive sense.
+This has no closed form solution. And this is different from the MLE for the untruncated Poisson, which is just $\hat{\lambda}_{MLE} =\bar{z}\_n$. However, if the zero has a fairly small probability (i.e. $e^{-\lambda}$ is very small), then $\hat{\lambda}\_{MLE}$ and $\hat{\lambda}\_{MLE, trunc}$ will be quite close. This makes intuitive sense.
 
 ```R
 library(countreg)
