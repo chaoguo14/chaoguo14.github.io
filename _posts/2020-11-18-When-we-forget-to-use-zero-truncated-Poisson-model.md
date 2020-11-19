@@ -4,7 +4,7 @@ title: When we forget to use zero-truncated Poisson model
 tags: statistics regression
 ---
 
-Poisson model (e.g. Poisso GLM) is often used to model count data. For example, the number of train arrivals for a given time period can be Poisson distributed. This is closely related to Poisson process.
+Poisson model (e.g. Poisson GLM) is often used to model count data. For example, the number of train arrivals for a given time period can be Poisson distributed. This is closely related to Poisson process.
 
 A Poisson variable $X$ can take values in $\{0, 1, 2, \cdots\}$. However, sometimes the zero's are censored. For example, the number of car accidents might be Poisson distributed. But, if a vehicle had zero accident, it might not get reported in the first place. We can only observe the non-zero outcomes. In such cases, Poisson is not the appropriate distribution to use. Instead, we should use zero-truncated Poisson distribution. As we will see later, misspecification will lead to incorrect parameter estimates, especially when it is very likely to observe zero.
 
