@@ -106,4 +106,5 @@ In order to better understand the role of "noise level/variance level", we shoul
 For example, at any given node, it might be the case that two variables `gender` and `year_of_education` combined can explain $y_i$'s pretty well, thus reducing the variance. But when we look at them individually, none of them is highly correlated with $y_i$'s. Under such situation, a third unrelated categorical variable with lots of level might be favored. This type of situation is probably very common in practice. So it is very understandable that people think categorical variables with many levels tend to cause problems.
 
 [1]. https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance.html#sphx-glr-auto-examples-inspection-plot-permutation-importance-py
+
 [2]. https://stats.stackexchange.com/questions/49243/rs-randomforest-can-not-handle-more-than-32-levels-what-is-workaround
