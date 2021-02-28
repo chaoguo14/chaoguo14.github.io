@@ -13,12 +13,12 @@ Data scientists tend to say things like "Oh, my variable $X_2$ has too many leve
 1. Scan through all the variables $X_1, X_2, \cdots, X_p$
 2. For each variable, scan through all the possible partitions on $y_i$'s by which this variable can create. Specifically,
     1. If $X_j$ is numerical and has values $x_{j1},x_{j2},\cdots,x_{jm}$ present in the data, we look at all sets $\{y_i \mid x_i \le x_{ik}\}$
-    2. If $X_j$ is categorical and has levels $a, b, c$ present in the data, then we look at all sets $\{y_i \mid x_i \in \text{some subset of} \{a,b,c\}\}$
+    2. If $X_j$ is categorical and has levels $a, b, c$ present in the data, then we look at all sets $\{y_i \mid x_i \in \text{some subset of } \\{a,b,c\\}\}$
 4. Find the best variable and its best split
 
 So, in fact, it's not that the cardinality of $X_i$ that matters. Rather, it's the cardinality of the _set of partitions it can induce_ matters. Specifically, if $X_j$ is a categorical variable with $q$ levels, then it creates $2^q - 1$ partitions. On the other hand, if $X_j$ is a numeric with $q$ distinct values, then it creates only $q$ partitions. In fact, that's why randomForest package in R cannot handle categorical variables with more than 32 categories. Because a categorical variable with 32 cateogires induces 2,147,483,647 partitions on $y_i$'s. See [2].
 
-### Sure. But still, if $X$ has many levels, it induces more partitions on $y_i$'s, so it's still a problem...?
+### Sure. But still, if $X$ has many levels, it induces more partitions on $y_i$'s, so it's always a problem...?
 The answer is "yes" most of the time in practice. However, in some sense, the reason lies not in $X$ but other independent variables.
 
 Let us consider a simple example. We simulate $n$ data points from $Y = 3X_1 + \epsilon$ where $\epsilon$ is some noise. Now, we add a categorical variable $X_2$ with many levels. Given the data, will the tree split using $X_1$ or $X_2$?
@@ -100,6 +100,10 @@ plot(std_list, result,
 In this simulation, we generate 100 data points. from $Y = 3X_1 + \epsilon$ with different noise levels. We then see how likely the tree will make a split using $X_2$, the unrelated categorical variable with 90 levels. From the graph, we see that
 1. Even though we have a cat variable with lots of levels, when the noise level is small, the tree still chooses the right variable $X_1$ to make a split.
 2. When the noise level increases, it becomes more and more difficult to make a good split using $X_1$. Since $X_2$ has many levels and creates more partitions on $y_i$'s, the tree tends to use $X_2$.
+
+In order to better understand the role of "noise level/variance level", we should realize that decision tree has a very interesting property: Even though the whole tree _forces_ all variables to interact with each other, it essentially does a sequence of univariate analysis at each node.
+
+For example, at any given node, it might be the case that two variables `gender` and `year_of_education` combined can explain $y_i$'s pretty well, thus reducing the variance. But when we look at them individually, none of them is highly correlated with $y_i$'s. Under such situation, a third unrelated categorical variable with lots of level might be favored. This type of situation is probably very common in practice. So it is very understandable that people think categorical variables with many levels tend to cause problems.
 
 [1]. https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance.html#sphx-glr-auto-examples-inspection-plot-permutation-importance-py
 [2]. https://stats.stackexchange.com/questions/49243/rs-randomforest-can-not-handle-more-than-32-levels-what-is-workaround
