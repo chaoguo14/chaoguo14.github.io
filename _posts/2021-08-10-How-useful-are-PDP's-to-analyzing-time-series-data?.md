@@ -110,6 +110,5 @@ plot(predict(cart_tree) - y, dplyr::lag(predict(cart_tree) - y, 1))
 In conclusion, when you want to analyze some time series data, it's probably a good idea to start with some classical models, such as VAR/VARX models. At least for these models, you know clearly what the assumpsion are and how to interpret the model. For example, you can also use impulse response function (IRF) to understand how $Y$ might change _over time_ when you change $X$. On the other hand, tree-based methods are not built with time series in mind. Indeed, none of the popular tree implementations examines residuals and its auto-correlation/stationarity after each split.
 
 References
-[1]. [https://scikit-learn.org/stable/modules/partial_dependence.html#mathematical-definition](https://scikit-learn.org/stable/modules/partial_dependence.html#mathematical-definition)
-
-[2]. [http://statmath.wu.ac.at/~hauser/LVs/FinEtricsQF/FEtrics_Chp4.pdf](http://statmath.wu.ac.at/~hauser/LVs/FinEtricsQF/FEtrics_Chp4.pdf)
+1. [https://scikit-learn.org/stable/modules/partial_dependence.html#mathematical-definition](https://scikit-learn.org/stable/modules/partial_dependence.html#mathematical-definition)
+2. [http://statmath.wu.ac.at/~hauser/LVs/FinEtricsQF/FEtrics_Chp4.pdf](http://statmath.wu.ac.at/~hauser/LVs/FinEtricsQF/FEtrics_Chp4.pdf)
