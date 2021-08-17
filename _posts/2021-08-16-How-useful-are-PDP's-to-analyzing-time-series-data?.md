@@ -40,6 +40,8 @@ linear_reg <- lm(y ~ x + z - 1)
 summary(linear_reg)
 ```
 
+![]({{site.baseurl}}/assets/10_01.png)
+
 If you are well-versed in regression model, you will notice something wrong immediately by performing residuals analysis. The residuals are highly auto-correlated, a clear violation of OLS assumption.
 
 ```R
@@ -47,7 +49,9 @@ plot(head(linear_reg$residuals, -1), tail(linear_reg$residuals, -1), xlab = "lag
 car::durbinWatsonTest(linear_reg)
 ```
 
-We can, of course, plot PDP's of $X$ and $Z$. Here, I have plotted the theoretical PDP's in red, and estimated PDP's in blue (Exercise: They are quite different. Why? Which one better represents the model behavior?). Again, they are essentially telling us the same wrong story.
+![]({{site.baseurl}}/assets/10_02.png)
+
+We can, of course, plot PDP's of $X$ and $Z$. Here, I have plotted the theoretical PDP of $X$ in red, and estimated PDP's in blue (Exercise: They are somewhat different. Why? Which one better represents the model behavior?). Again, it's telling us the same wrong story.
 
 ```R
 plot(x = x[order(x)],
@@ -56,14 +60,9 @@ plot(x = x[order(x)],
      xlab="Value of X", ylab="Average of Predicted Y", main = "PDP of X")
 lines(x, (linear_reg$coefficients[1])*x, col = "red")
 points(x, y)
-
-plot(x = z[order(z)],
-     y = mean(x)*(linear_reg$coefficients[1]) + z[order(z)]*(linear_reg$coefficients[2]),
-     type = "l", col = "blue", ylim = c(-12, 3),
-     xlab="Value of Z", ylab="Average of Predicted Y", main = "PDP of Z")
-lines(z, (linear_reg$coefficients[2])*z, col = "red")
-points(z, y)
 ```
+
+![]({{site.baseurl}}/assets/10_03.png)
 
 ### Tree-based algorithms suffer from the same issue
 Even though tree-based algorithms (e.g. decision tree, gradient boosting, random forest) are more complicated, they still suffer from the same issue. Here, we fit a decision tree as well as a gradient boosting model to the same data. We then plot their PDP's on the variable $X$. Even though CART and GBM have more complicated PDP's (no longer a straight line), they still tell the same story: If we increase $X$, we tend to get a bigger predicted $Y$.
@@ -93,11 +92,15 @@ points(x, y)
 legend("topleft", legend = c("Linear Regression","Decision Tree","Gradient Boosting"), col = c("black", "blue", "red"), lty=1:1)
 ```
 
+![]({{site.baseurl}}/assets/10_04.png)
+
 If we have the habit of always doing residual analysis, we can still see some obvious auto-correlation. However, if we forgot to do that, then there is nothing that could hint us the uselessness of our PDP's.
 
 ```R
 plot(predict(cart_tree) - y, dplyr::lag(predict(cart_tree) - y, 1))
 ```
+
+![]({{site.baseurl}}/assets/10_05.png)
 
 ### Start with classical models
 In conclusion, when you want to analyze some time series data, it's probably a good idea to start with some classical models, such as VAR/VARX models. At least for these models, you know clearly what the assumpsion are and how to interpret coefficients. You can also use impulse response function (IRF) to understand how $Y$ might change _over time_ when you change $X$. On the other hand, tree-based methods are not built with time series in mind. Indeed, none of the popular tree implementations examines residuals and its auto-correlation/stationarity after each split.
