@@ -19,7 +19,7 @@ It is widely known that running OLS on non-stationary time series will give you 
 
 For simplicity, assume we have three time series $X_t, Z_t$ and $Y_t$ that all seem to be "trending downwards". We want to decide if $X_t$ and/or $Z_t$ are "related to" $Y_t$. Is it possible to figure out by using linear regression? For example, can we rely on coefficient estimate/confidence interval?
 
-The answer is no. Let's simulate three independent random walks. From the graph, it seems that all of them are trending upwards, which may trick us to believe that they are related to each other, or we can even use $X_t$ and $Z_t$ to explain $Y_t$. If we run a linear regression formally, it only reconfirms out _incorrect_ conclusion. Even better, the two significant p-values will lead us further down the wrong path.
+The answer is no. Let's simulate three independent random walks. From the graph, it seems that all of them are trending downwards, which may trick us to believe that they are related to each other, or we can even use $X_t$ and $Z_t$ to explain $Y_t$. If we run a linear regression formally, it only reconfirms out _incorrect_ conclusion. Even better, the two significant p-values will lead us further down the wrong path.
 
 ```R
 set.seed(24)
@@ -41,6 +41,8 @@ summary(linear_reg)
 ```
 
 ![]({{site.baseurl}}/assets/10_01.png)
+
+![]({{site.baseurl}}/assets/10_06.png)
 
 If you are well-versed in regression model, you will notice something wrong immediately by performing residuals analysis. The residuals are highly auto-correlated, a clear violation of OLS assumption.
 
