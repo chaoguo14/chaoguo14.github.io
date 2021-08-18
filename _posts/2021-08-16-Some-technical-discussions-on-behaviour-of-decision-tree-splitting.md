@@ -54,44 +54,6 @@ In general, $\mathbf{y}$ will not be sorted. We can still scan the whole thing, 
 
 ![]({{site.baseurl}}/assets/11_02.png)
 
-### No, but really, _how_ does a decision tree choose on which feature to split?
-
-
-Intuitively, it should choose the feature $\mathbb{x}_i$ that is "mostly correlated" to the response $\mathbb{y}$. In order to make this statement more precise, I started by consider Pearson correlation.
-
-> An incorrect statement: Given features $X_1,\cdots,X_n$ and a response $Y$, a decision tree always chooses the $X_i$ that maximizes its Pearson correlation with $Y$.
-
-However, it was very easy to construct counterexample. So the above statement is wrong.
-
-```R
-Ckmeans.1d.dp::Ckmeans.1d.dp(c(1,2,3,4,5,6), k = 2)
-
-train_df <- data.frame(X1 = c(1,3,4,5,6,7),
-                       X2 = c(1,4,5,6,7,8),
-                       Y  = c(1,2,3,4,5,6))
-
-stats::cor.test(train_df$X1, train_df$Y, method = 'spearman')$estimate
-stats::cor.test(train_df$X2, train_df$Y, method = 'spearman')$estimate
-```
-
-One can verify that the minimum SS is achieved by partitioning $Y$ into $\\{1,2,3\\}$ and $\\{4, 5, 6\\}$. We can achieve this partition by using either $X_1$ or $X_2$. Yet, $X_1$ has higher Pearson correlation with $Y$ than $X_2$.
-
-The special thing about this example is this: Even though $X_1$ has higher correlation with $Y$ than $X_2$, they share the same ranking with $Y$. In order words, sorting $Y$ using $X_1$'s rank or $X_2$'s rank does not make any difference.
-
-So maybe we can fix the incorrect statement. Instead of using Pearson's correlation, we can use some type of rank-based correlation measure. What about
-
-> Another incorrect statement: Given features $X_1,\cdots,X_n$ and a response $Y$, a decision tree always chooses the $X_i$ that maximizes its Spearman's correlation with $Y$.
-
-This statement also turned out to be wrong. With a little help from computer, we can quickly find a counterexample.
-```R
-train_df <- data.frame(X1 = c(1,2,6,3,4,5),
-                       X2 = c(3,1,2,6,5,4),
-                       Y  = c(1,2,3,4,5,6))
-```
-
-$X_1$ has higher Spearman's correlation with $Y$ than $X_2$ (0.657 versus 0.6). However, if we use $X_1$ to sort our $Y$ and look for the best partition, the minimum SS will be $5.5$. On the contrary, if we use $X_2$, the minimum SS is $4$, which is better.
-
-At this point, it seems like there is no easy answer to the question "how does a decision tree choose on which feature to split?" except then reciting the algorithm itself.
 
 
 
