@@ -21,7 +21,9 @@ The question I was interested in was this:
  
 If you examine the algorithm, obviously the magic happens when we create partition $L$ and $R$ on the _sorted_ vector $\mathbb{y}'$. To get to the essence of the problem, let's ignore $\mathbf{x}\_i$ for now, and think about the following problem:
 
-> **Question 1**: Given a vector $\mathbf{y}$, and re-order it (or equivalently, permute it) to get another vector $\mathbf{y}' := \pi(\mathbf{y})$. We then partition the re-ordered vector $\mathbb{y}'$ into a left part $L$ and a right part $R$. If we want to minimize $SS(L) + SS(R)$, how should we re-order $\mathbf{y}$ (i.e. what is the optimal $\pi^*(\cdot)$? How should we partition it after that?
+> **Question 1**: Given a vector $\mathbf{y}$, and re-order it (or equivalently, permute it) to get another vector $\mathbf{y}' := \pi(\mathbf{y})$. We then partition the re-ordered vector $\mathbf{y}'$ into a left part $L$ and a right part $R$. If we want to minimize $SS(L) + SS(R)$, how should we re-order $\mathbf{y}$ (i.e. what is the optimal $\pi^*(\cdot)$? How should we partition it after that?
+
+Note that we are _only allowed_ to cut the array in half from the middle. For example, if we have $\mathbf{y} = \\{1, 2, 3, 4\\}$, we can't say that $L = \\{1, 3\\}$ because there is a $2$ between them.
 
 For simplicity, let's define order function $o(\mathbf{x})$. This is the same as `order()` in R. For example, $o([5,2,7]) = [2,1,3]$. If we can answer Question 1, then we can think of Question 0 in this way:
 
@@ -50,15 +52,25 @@ In conclusion, even when $\mathbf{y}$ is sorted, there is no analytical way to f
 
 ### What if $\mathbf{y}$ is not sorted?
 
-In general, $\mathbf{y}$ will not be sorted. We can still scan the whole thing, and find the best (linearly scanned) partition _for that specific ordering_. But for each different ordered $\mathbf{y}'$, there is a different optimal partition, and thus a different minimum SS.
+In general, $\mathbf{y}$ will not be sorted in ascending order. In such cases, we can still scan the whole thing, and find the best (linearly scanned) partition _for that specific ordering_. But for each different ordered $\mathbf{y}'$, there is a different optimal partition, and thus a different minimum SS. See the following example:
 
 ![]({{site.baseurl}}/assets/11_02.png)
 
-This is an enlightening example for two reasons. First, the first two arrays have different orders, but they have the same optimal partition. Second, the third array has a different optimal partition, and a worse minimum $SS$.
+In order to tackle the situation, let's notice a few things. Let $\mathbf{y}$ be in _any_ order, and $L, R$ be _any_ of its $n$ left/right partitions. We can categorize $(L, R)$ into 2 types:
 
-To understand why, let's imagine a "border" between $3$ and $4$ (where the optimal split is) in the first array. To get the second array, no number goes across the border. As a result, we are not changing the partition we would get. To get the third array, however, number $2$ and $6$ have to be switched. They have to go across the border.
+> 1. Type I: $\max(L) \le \min(R)$. For example, $L = \\{3,2,1\\}, R = \\{4,6,5\\}$. In such case, we write $L \prec R$.
+> 2. Type II: $\max(L) > \min(R)$. For example, $L = \\{1,2,4\\}, R = \\{3,6,5\\}$.
 
+Adopting this view, we immediately conclude the following:
 
+> 1. If $\mathbf{y}$ is sorted, then every partition $(L, R)$ satisfies that $L \prec R$.
+> 2. However, if $\mathbf{y}$ is not sorted, then _some_ of its partition might still satisfies that $L \prec R$.
+
+Let's go back to this example:
+
+![]({{site.baseurl}}/assets/11_02.png)
+
+The first array is already sorted. No matter how you split it, you always end up with $L \perc R$. The second array is not sorted. However, $L = \\{3, 1, 2\\}, R = \\{5, 6, 4\\}$ still satisfies $L \perc R$. Why is that? Because you can sort $L$ and $R$ individually, and then concatenate them together. The result will be the sorted array $\\{1, 2, 3, 4, 5, 6\\}$.
 
 _To be continued in the next post._
 
