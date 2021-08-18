@@ -10,8 +10,8 @@ This is like Data Science 101, so I will not go through the details. You can rea
 
 - Do the following steps for every feature $\mathbf{x}\_1,\cdots,\mathbf{x}\_p$
   - Sort $(x\_i, y)$ in non-descending order of $x_i$. Call the sorted pair $(x_i', y')$. Note that for different $x_i$'s we will get different $y_i'$.
-  - Divide $\mathbf{y}'$ (i.e. the sorted $\mathbf{y}$) into a left part $L = \\{y_i' \le y_s = y_1'\\}$ and a right part $R = \\{y_i > y_1'\\}$, and compute something called _impurity_. For regression tree, a commonly used impurity measure is $SS(L) + SS(R)$. Here, $SS$ is the sum of squared error, defined as $SS(x_1,\cdots,x_n) = \sum_{i=1}^n (x_i - \bar{x}_n)^2$, where $\bar{x}_n$ is the sample average.
-  - Repeat the previous step, but change $y_1'$ to $y_2', y_3'$ and so on.
+  - Divide $\mathbf{y}'$ (i.e. the sorted $\mathbf{y}$) into a left part $L = \\{y_i' \le y_1'\\}$ and a right part $R = \\{y_i > y_1'\\}$, and compute something called _impurity_. For regression tree, a commonly used impurity measure is $SS(L) + SS(R)$. Here, $SS$ is the sum of squared error, defined as $SS(x_1,\cdots,x_n) = \sum_{i=1}^n (x_i - \bar{x}_n)^2$, where $\bar{x}_n$ is the sample average.
+  - Repeat the previous step, but change $y\_1'$ to $y\_2', y\_3', \cdots, y\_n'$.
   - We have examined $n$ different partitions. Keep the one that gives the smallest impurity $SS(L) + SS(R)$
 - Now we have the smallest impurity $SS(L) + SS(R)$ for each feature. Choose the feature with the smallest overall impurity.
 
@@ -19,9 +19,9 @@ The question I was interested in was this:
 
 > **Question 0**: Is there any smarter way to find the best feature $\mathbf{x}$, without going through all the features? If not, is there any smarter way to understand the whole process at least?
  
-If you examine the algorithm, obviously the magic happens when we create partition $L$ and $R$ on the _sorted_ vector $\mathbb{y}'$. To get to the essence of the problem, let's ignore $\mathbf{x}\_i$ for now, and think about the following problem:
+If you examine the algorithm, obviously the magic happens when we create partition $L$ and $R$ on the _sorted_ vector $\mathbf{y}'$. To get to the essence of the problem, let's ignore $\mathbf{x}\_i$ for now, and think about the following problem:
 
-> **Question 1**: Given a vector $\mathbf{y}$, and re-order it (or equivalently, permute it) to get another vector $\mathbf{y}' := \pi(\mathbf{y})$. We then partition the re-ordered vector $\mathbf{y}'$ into a left part $L$ and a right part $R$. If we want to minimize $SS(L) + SS(R)$, how should we re-order $\mathbf{y}$ (i.e. what is the optimal $\pi^*(\cdot)$? How should we partition it after that?
+> **Question 1**: Given a vector $\mathbf{y}$, and re-order it (or equivalently, permute it) to get another vector $\mathbf{y}' := \pi(\mathbf{y})$. We then partition the re-ordered vector $\mathbf{y}'$ into a left part $L$ and a right part $R$. If we want to minimize $SS(L) + SS(R)$, how should we re-order $\mathbf{y}$ (i.e. what is the optimal $\pi^*(\cdot)$)? How should we partition it after that?
 
 Note that we are _only allowed_ to cut the array in half from the middle. For example, if we have $\mathbf{y} = \\{1, 2, 3, 4\\}$, we can't say that $L = \\{1, 3\\}$ because there is a $2$ between them.
 
@@ -46,7 +46,7 @@ But it's also easy to find counterexamples. Consider $\mathbf{y} = \\{1, 3, 6, 8
 
 ![]({{site.baseurl}}/assets/11_01.png)
 
-It seems that there is no analytical solution. You might not be surpried. After all, this is a special case of the more difficult _$k$-means clustering problem_. Here, we are dealing with a 1-dimensional 2-means clustering problem. For 1-dimensional $k$-means clustering where each cluster is one interval, you can use dynamic programming to find a global optimizer. See referenece [2] for details.
+It seems that there is no analytical solution. You might not be surpried. After all, this is a special case of the more difficult _$k$-means clustering problem_. Here, we are dealing with a 1-dimensional 2-means clustering problem. For 1-dimensional $k$-means clustering, you can use dynamic programming to find a global optimizer. See referenece [2] for details.
 
 In conclusion, even when $\mathbf{y}$ is sorted, there is no analytical way to find the best split $y_s$. We can always linearly scan through it. So that's not too bad.
 
@@ -70,7 +70,7 @@ Let's go back to this example:
 
 ![]({{site.baseurl}}/assets/11_02.png)
 
-The first array is already sorted. No matter how you split it in half, you always end up with $L \lhd R$. The second array is not sorted. However, $L = \\{3, 1, 2\\}, R = \\{5, 6, 4\\}$ still satisfies $L \lhd R$. However, if we split the second array into $\\{3\\},\\{1,2,5,6,4\\}$, then the condition is not satisfied, since $3 > 1$.
+The first array is already sorted. No matter how you split it in half, you always end up with $L \lhd R$. The second array is not sorted, but $L = \\{3, 1, 2\\}, R = \\{5, 6, 4\\}$ still satisfies $L \lhd R$. However, if we split the second array into $\\{3\\},\\{1,2,5,6,4\\}$, then the condition is not satisfied, since $3 > 1$.
 
 Here comes the main result.
 > Let $\mathbf{y}$ be in any order, and $(L, P)$ be any partition. Assume $\mean(L) < \mean(R)$. As long as $L \lhd R$ does not hold, we can switch $\max(L)$ and $\min(R)$ to make $SS(L) + SS(R)$ smaller. In other words, $L \lhd R$ is a necessary (but not sufficient) condition to minimize $SS(L) + SS(R)$.
