@@ -25,7 +25,7 @@ If you examine the algorithm, obviously the magic happens when we create partiti
 
 For simplicity, let's define order function $o(\mathbf{x})$. This is the same as `order()` in R. For example, $o([5,2,7]) = [2,1,3]$. If we can answer Question 1, then we can think of Question 0 in this way:
 
-> There is a permutation $\pi^*$ such that if you partition $\pi^*(\mathbf{y})$ into a left part and a right part, you can minimize $SS(L) + SS(R)$.
+> There is a permutation $\pi^\*$ such that if you partition $\pi^\*(\mathbf{y})$ into a left part and a right part, you can minimize $SS(L) + SS(R)$.
 > To find the best feature, we just need to find the feature $\mathbf{x}^*$ such that $\|o(\mathbf{x}^*) - o(\pi(\mathbf{y}))\|$ is as small as possible.
 
 Or at least that's what I thought...
