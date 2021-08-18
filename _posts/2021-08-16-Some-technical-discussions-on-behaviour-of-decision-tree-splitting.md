@@ -8,7 +8,7 @@ tags: decision-tree
 
 This is like Data Science 101, so I will not go through the details. You can read [1] to refresh the memory. Here is the rough idea:
 
-- Do the following steps for every feature $\mathbb{x_1},\cdots,\mathbb{x_p}$
+- Do the following steps for every feature $\mathbb{x_1},\cdots,\mathbf{x_p}$
   - Sort $(x_i, y)$ in non-descending order of $x_i$. Call the sorted pair $(x_i', y')$. Note that for different $x_i$'s we will get different $y_i'$.
   - Divide $\mathbb{y}'$ (i.e. the sorted $\mathbb{y}$) into a left part $L = \\{y_i' \le y_s = y_1'\\}$ and a right part $R = \\{y_i > y_1'\\}$, and compute something called _impurity_. For regression tree, a commonly used impurity measure is $SS(L) + SS(R)$. Here, $SS$ is the sum of squared error, defined as $SS(x_1,\cdots,x_n) = \sum_{i=1}^n (x_i - \bar{x}_n)^2$, where $\bar{x}_n$ is the sample average.
   - Repeat the previous step, but change $y_1'$ to $y_2', y_3'$ and so on.
@@ -19,7 +19,7 @@ Obviously, the magic happens when we create partition $L$ and $R$ on the sorted 
 
 > **Question 1**: Given a vector $\mathbb{y}$, and re-order it (or equivalently, permute it) to get another vector $\mathbb{y}' := \pi(\mathbb{y})$. We then partition the re-ordered vector $\mathbb{y}'$ into a left part $L$ and a right part $R$. If we want to minimize $SS(L) + SS(R)$, how should we re-order $\mathbb{y}$ (i.e. what is the optimal $\pi^*(\cdot)$)? How should we partition it after that?
 
-For simplicity, define order function $o(\mathbf{x})$. This is the same as `order()` in R. For example, $o([5,2,7]) = [2,1,3]$. If we can answer question 1, then it remains to find the feature $\mathbf{x}$ such that the difference in order $\| o(\mathbf{x}) - o(\pi^*(\mathbf{y}))\|$ is the smallest. Or at least that's what I conjectured.
+For simplicity, define order function $o(\mathbb{x})$. This is the same as `order()` in R. For example, $o([5,2,7]) = [2,1,3]$. If we can answer question 1, then it remains to find the feature $\mathbb{x}$ such that the difference in order $\| o(\mathbb{x}) - o(\pi^*(\mathbb{y}))\|$ is the smallest. Or at least that's what I conjectured.
 
 ### No, but really, _how_ does a decision tree choose on which feature to split?
 
