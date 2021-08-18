@@ -5,7 +5,7 @@ title: Archive
 
 - 2021
 {% for post in site.posts %}
-  {{ (post.date | date_to_string | slice: -4, 3) }}
+  {{ (post.date | date_to_string | slice: -4, 2) }}
   {% if (post.date | date_to_string | slice: -4, 4) == "2021" %}
     - {{ post.date | date_to_string }} &raquo; [ {{ post.title }} ]({{ post.url }})
   {% endif %}
