@@ -3,7 +3,7 @@ layout: page
 title: Archive
 ---
 
-{% set all_year = ['2021','2020','2019'] %}
+{% assign all_year = ['2021','2020','2019'] %}
 
 {% for y in all_year %}
 - {{ y }}
