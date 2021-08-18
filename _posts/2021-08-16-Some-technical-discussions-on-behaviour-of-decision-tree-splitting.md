@@ -75,7 +75,7 @@ The first array is already sorted. No matter how you split it in half, you alway
 Here comes the main result.
 > Let $\mathbf{y}$ be in any order, and $(L, P)$ be any partition. Assume $\mean(L) < \mean(R)$. As long as $L \lhd R$ does not hold, we can switch $\max(L)$ and $\min(R)$ to make $SS(L) + SS(R)$ smaller. In other words, $L \lhd R$ is a necessary (but not sufficient) condition to minimize $SS(L) + SS(R)$.
 
-The proof involves some tedious-but-not-difficult algebra, so we omit the full proof. The implication, however, is this: If you want to find the best $(L, R)$ globally, you should always start with a sorted $\mathbf{y}$. Because only a sorted $\mathbf{y}$ can _guarantee_ that $L \prec R$, which is a necessary (but not sufficient) condition for minimizing $SS$.
+The proof involves some tedious-but-not-difficult algebra, so we omit the full proof. The implication, however, is this: If you want to find the best $(L, R)$ globally, you should always start with a sorted $\mathbf{y}$. Because only a sorted $\mathbf{y}$ can _guarantee_ that $L \lhd R$, which is a necessary (but not sufficient) condition for minimizing $SS$.
 
 _To be continued in the next post._
 
