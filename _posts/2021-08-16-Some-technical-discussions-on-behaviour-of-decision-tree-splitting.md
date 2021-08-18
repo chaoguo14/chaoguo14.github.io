@@ -32,7 +32,7 @@ For simplicity, let's define order function $o(\mathbf{x})$. This is the same as
 
 Or at least that's what I thought...
 
-### How to find the best partition if $\mathbf{y}$ is sorted already?
+### How to find the best partition if $\mathbf{y}$ is sorted already? (Answer: Brute force)
 
 I started with a seemingly easier question: Assume $\mathbf{y}$ is already sorted. Is there any _analytical_ way to find the optimal split point (Note that we can always just scan through all $n$ possibilities)? Formally,
 
@@ -50,7 +50,7 @@ It seems that there is no analytical solution. You might not be surpried. After 
 
 In conclusion, even when $\mathbf{y}$ is sorted, there is no analytical way to find the best split $y_s$. We can always linearly scan through it. So that's not too bad.
 
-### Can I find the best partition on unsorted $\mathbf{y}$?
+### Can I find the best partition on unsorted $\mathbf{y}$? (Answer: In most cases, no)
 
 In general, $\mathbf{y}$ will not be sorted. In such cases, we can still scan the whole thing, and find the best partition _for that specific ordering_. But how do we know if it is the best one among all possible partitions? See the following example:
 
