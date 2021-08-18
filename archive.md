@@ -8,6 +8,8 @@ title: Archive
   {{ (post.date | date_to_string) | slice: -4, 4 }}
   {% if (post.date | date_to_string) | slice: -4, 4 == 2021 %}
     - {{ post.date | date_to_string }} &raquo; [ {{ post.title }} ]({{ post.url }})
+  {% else %}
+    - No idea
   {% endif %}
 {% endfor %}
 
