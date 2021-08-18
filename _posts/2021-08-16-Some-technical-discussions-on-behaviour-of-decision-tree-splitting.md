@@ -10,7 +10,7 @@ This is like Data Science 101, so I will not go through the details. You can rea
 
 - Do the following steps for every feature $\mathbf{x}\_1,\cdots,\mathbf{x}\_p$
   - Sort $(x\_i, y)$ in non-descending order of $x_i$. Call the sorted pair $(x_i', y')$. Note that for different $x_i$'s we will get different $y_i'$.
-  - Divide $\mathbf{y}'$ (i.e. the sorted $\mathbb{y}$) into a left part $L = \\{y_i' \le y_s = y_1'\\}$ and a right part $R = \\{y_i > y_1'\\}$, and compute something called _impurity_. For regression tree, a commonly used impurity measure is $SS(L) + SS(R)$. Here, $SS$ is the sum of squared error, defined as $SS(x_1,\cdots,x_n) = \sum_{i=1}^n (x_i - \bar{x}_n)^2$, where $\bar{x}_n$ is the sample average.
+  - Divide $\mathbf{y}'$ (i.e. the sorted $\mathbf{y}$) into a left part $L = \\{y_i' \le y_s = y_1'\\}$ and a right part $R = \\{y_i > y_1'\\}$, and compute something called _impurity_. For regression tree, a commonly used impurity measure is $SS(L) + SS(R)$. Here, $SS$ is the sum of squared error, defined as $SS(x_1,\cdots,x_n) = \sum_{i=1}^n (x_i - \bar{x}_n)^2$, where $\bar{x}_n$ is the sample average.
   - Repeat the previous step, but change $y_1'$ to $y_2', y_3'$ and so on.
   - We have examined $n$ different partitions. Keep the one that gives the smallest impurity $SS(L) + SS(R)$
 - Now we have the smallest impurity $SS(L) + SS(R)$ for each feature. Choose the feature with the smallest overall impurity.
