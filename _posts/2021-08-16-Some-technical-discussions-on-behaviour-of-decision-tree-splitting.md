@@ -17,7 +17,7 @@ This is like Data Science 101, so I will not go through the details. You can rea
 
 The question I was interested in was this:
 
-> **Question 0**: If there any smarter way to find the best feature $\mathbf{x}$, without going through all the features? If not, is there any smarter way to understand the whole process at least?
+> **Question 0**: Is there any smarter way to find the best feature $\mathbf{x}$, without going through all the features? If not, is there any smarter way to understand the whole process at least?
  
 If you examine the algorithm, obviously the magic happens when we create partition $L$ and $R$ on the _sorted_ vector $\mathbb{y}'$. To get to the essence of the problem, let's ignore $\mathbf{x}\_i$ for now, and think about the following problem:
 
