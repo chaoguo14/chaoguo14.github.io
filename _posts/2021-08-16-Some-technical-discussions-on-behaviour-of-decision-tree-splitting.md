@@ -26,7 +26,7 @@ If you examine the algorithm, obviously the magic happens when we create partiti
 For simplicity, let's define order function $o(\mathbf{x})$. This is the same as `order()` in R. For example, $o([5,2,7]) = [2,1,3]$. If we can answer Question 1, then we can think of Question 0 in this way:
 
 > There is a permutation $\pi^\*$ such that if you partition $\pi^\*(\mathbf{y})$ into a left part and a right part, you can minimize $SS(L) + SS(R)$.
-> To find the best feature, we just need to find the feature $\mathbf{x}^*$ such that $\|o(\mathbf{x}^*) - o(\pi(\mathbf{y}))\|$ is as small as possible.
+> To find the best feature, we just need to find the feature $\mathbf{x}^\*$ such that $\|o(\mathbf{x}^\*) - o(\pi(\mathbf{y}))\|$ is as small as possible.
 
 Or at least that's what I thought...
 
@@ -44,16 +44,19 @@ But it's also easy to find counterexamples. Consider $\mathbf{y} = \\{1, 3, 6, 8
 
 ![]({{site.baseurl}}/assets/11_01.png)
 
-It seems that this seemingly easier question has no simple answer. I guess you can say that you are not surprised. After all, this is a special case of the more difficult _$k$-means clustering problem_. Here, we are dealing with a 1-dimensional 2-means clustering problem. For 1-dimensional $k$-means clustering where each cluster is one interval, you can use dynamic programming to find a global optimizer. See refernece [2] for details.
+It seems that there is no analytical solution. You might not be surpried. After all, this is a special case of the more difficult _$k$-means clustering problem_. Here, we are dealing with a 1-dimensional 2-means clustering problem. For 1-dimensional $k$-means clustering where each cluster is one interval, you can use dynamic programming to find a global optimizer. See referenece [2] for details.
 
 In conclusion, even when $\mathbf{y}$ is sorted, there is no analytical way to find the best split $y_s$. We can always linearly scan through it. So that's not too bad.
 
 ### What if $\mathbf{y}$ is not sorted?
 
-In general, $\mathbf{y}$ will not be sorted. We can still scan the whole thing, and find the best partition _for that specific ordering_. But for each different ordered $\mathbf{y}'$, there is a different optimal partition, and thus a different minimum SS.
+In general, $\mathbf{y}$ will not be sorted. We can still scan the whole thing, and find the best (linearly scanned) partition _for that specific ordering_. But for each different ordered $\mathbf{y}'$, there is a different optimal partition, and thus a different minimum SS.
 
 ![]({{site.baseurl}}/assets/11_02.png)
 
+This is an enlightening example for two reasons. First, the first two arrays have different orders, but they have the same optimal partition. Second, the third array has a different optimal partition, and a worse minimum $SS$.
+
+To understand why, let's imagine a "border" between $3$ and $4$ (where the optimal split is) in the first array. To get the second array, no number goes across the border. As a result, we are not changing the partition we would get. To get the third array, however, number $2$ and $6$ have to be switched. They have to go across the border.
 
 
 
