@@ -16,7 +16,7 @@ This is like Data Science 101, so I will not go through the details. Here is the
 - Now we have the smallest impurity $SS(L) + SS(R)$ for each feature. Choose the feature with the smallest overall impurity.
 
 
-#### No, but really, _how_ does a decision tree choose on which feature to split?
+### No, but really, _how_ does a decision tree choose on which feature to split?
 
 Intuitively, it should choose the feature $X_i$ that is "mostly correlated" to the response $Y$. In order to make this statement more precise, I started by consider Pearson correlation.
 
@@ -54,7 +54,7 @@ $X_1$ has higher Spearman's correlation with $Y$ than $X_2$ (0.657 versus 0.6). 
 
 At this point, it seems like there is no easy answer to the question "how does a decision tree choose on which feature to split?" except then reciting the algorithm itself.
 
-#### How to find the best partition if $X$ is perfectly ordered with $Y$?
+### How to find the best partition if $X$ is perfectly ordered with $Y$?
 
 Since the previous question is too difficult, I moved to a seemingly easier question: Assume $X$ and $Y$ have the same order. Is there any analytical way to find the optimal split point?
 ```R
