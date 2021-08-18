@@ -65,11 +65,12 @@ Notice that if there are $l$ elements in the optimal left partition, then there 
 
 Built upon what we have analyzed, we can see why the idea "find the $\mathbf{x}$ strongly correlated with $\mathbf{y}$" could be right or wrong. Intuitively, if $\mathbf{x}$ and $\mathbf{y}$ has exactly the same order, then we will sort $\mathbf{y}$ when we sort $(\mathbf{x}\_i, \mathbf{y})$ together using $\mathbf{x}\_i$. As we have explained, an ordered $\mathbf{y}$ will guarantee us the optimal partition.
 
-But we have also seen that an ordered $\mathbf{y}$ is not necessary but sufficient. We just need to make sure that after we sort $(\mathbf{x}\_i, \mathbf{y})$ together using $\mathbf{x}\_i$, one of the $(L, R)$ partition is the same as the optimal one, _up to permutation within $L$ and $R$ respectively_.
+But we have also seen that an unordered $\mathbf{y}$ might give you the minimum $SS$, too. We just need to make sure that after we sort $(\mathbf{x}\_i, \mathbf{y})$ together using $\mathbf{x}\_i$, one of the $(L, R)$ partition is the same as the optimal one, _up to permutation within $L$ and $R$ respectively_.
 
 Indeed, the following statements are both wrong.
 
 > An incorrect statement: Given features $X_1,\cdots,X_n$ and a response $Y$, a decision tree always chooses the $X_i$ that maximizes its Pearson correlation with $Y$.
+> 
 > Another incorrect statement: Given features $X_1,\cdots,X_n$ and a response $Y$, a decision tree always chooses the $X_i$ that maximizes its Spearman's correlation with $Y$.
 
 Here are the counterexamples.
@@ -95,12 +96,12 @@ In counterexample 2, $\mathbf{x}\_1$ has higher Spearman's correlation with $\ma
 
 ### Going back to the original question
 So, going back to the original question,
-> Is there any smarter way to find the best feature x, without going through all the features? If not, is there any smarter way to understand the whole process at least?
+> Is there any smarter way to find the best feature $\mathbf{x}$, without going through all the features? If not, is there any smarter way to understand the whole process at least?
 
-At least for now, the answer is "no". However, it was a fun exercise.
+At least for now, the answer is "no". But it was a fun exercise.
 
 Footnotes:
 
-$^\{1\}$ We implicitly assume that there is only one optimal partition. This is not the case. For example, $\\{1,2,3,4,5\\}$ have two different partitions both giving the smallest $SS$, 2.5. A curious question is, is it possible to have more than 2 partitions such that they all give the smallest $SS$?
+$^\{1\}$ We implicitly assume that there is only one optimal partition. This is not the case. For example, $\\{1,2,3,4,5\\}$ have two different partitions both giving the smallest $SS$, 2.5. Is it possible to have more than 2 partitions such that they all give the smallest $SS$?
 
 _I appreciate my friend [Tai Yang](https://www.linkedin.com/in/tai-yang-2b2b2b10b/) for taking time to discuss this problem with me._
