@@ -2,6 +2,7 @@
 layout: post
 title: An interesting bug in the package RandomForest
 tags: coding R-language
+date: 2019-04-06
 ---
 
 ## Environment and a reproducible example
