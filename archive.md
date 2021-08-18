@@ -5,7 +5,7 @@ title: Archive
 
 {% assign all_years = "2021,2020,2019" | split: ", " %}
 {% for y in all_year %}
-- y
+- {{ y }}
   {% for post in site.posts %}
     {% assign pd = (post.date | date_to_string) | slice: -4, 4 %}
     {% if pd == y %}
