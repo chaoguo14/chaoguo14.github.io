@@ -59,12 +59,10 @@ In general, $\mathbf{y}$ will not be sorted. In such cases, we can still scan th
 If we are given the third array, we will find that $\\{1\\}, \\{3,6,2,4,5\\}$ is the best partition. But it is not the best one globally.
 
 In order to tackle the situation, let's notice a few things. Let $\mathbf{y}$ be in _any_ order, and $L, R$ be _any_ of its $n$ left/right partitions. We can categorize $(L, R)$ into 2 types:
-
 > 1. Type I: $\max(L) \le \min(R)$. For example, $L = \\{3,2,1\\}, R = \\{4,6,5\\}$. In such case, we write $L \lhd R$.
 > 2. Type II: $\max(L) > \min(R)$. For example, $L = \\{1,2,4\\}, R = \\{3,6,5\\}$.
 
 Adopting this view, we immediately conclude the following:
-
 > 1. If $\mathbf{y}$ is sorted, then every partition $(L, R)$ satisfies that $L \lhd R$.
 > 2. If $\mathbf{y}$ is not sorted, then _some_ of its partitions might still satisfies that $L \lhd R$.
 
@@ -72,7 +70,7 @@ Let's go back to this example:
 
 ![]({{site.baseurl}}/assets/11_02.png)
 
-The first array is already sorted. No matter how you split it in half, you always end up with $L \lhd R$. The second array is not sorted. However, $L = \\{3, 1, 2\\}, R = \\{5, 6, 4\\}$ still satisfies $L \lhd R$. Why is that? Because you can sort $L$ and $R$ individually, and then concatenate them together. The result will be the sorted array $\\{1,2,3,4,5,6\\}$.
+The first array is already sorted. No matter how you split it in half, you always end up with $L \lhd R$. The second array is not sorted. However, $L = \\{3, 1, 2\\}, R = \\{5, 6, 4\\}$ still satisfies $L \lhd R$. However, if we split the second array into $\\{3\\},\\{1,2,5,6,4\\}$, then the condition is not satisfied, since $3 > 1$.
 
 Here comes the main result.
 > Let $\mathbf{y}$ be in any order, and $(L, P)$ be any partition. Assume $\mean(L) < \mean(R)$. As long as $L \lhd R$ does not hold, we can switch $\max(L)$ and $\min(R)$ to make $SS(L) + SS(R)$ smaller. In other words, $L \lhd R$ is a necessary (but not sufficient) condition to minimize $SS(L) + SS(R)$.
