@@ -87,6 +87,7 @@ The proof involves some tedious-but-not-difficult algebra, so we omit the full p
      * Sub bullets
 </details>
 
+
 The implication, however, is this: If you want to find the best $(L, R)$ globally, you should always start with a sorted $\mathbf{y}$. Because only a sorted $\mathbf{y}$ can _guarantee_ that $L \lhd R$, which is a necessary (but not sufficient) condition for minimizing $SS$.
 
 _To be continued in the next post._
