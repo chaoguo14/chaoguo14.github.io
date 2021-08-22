@@ -101,8 +101,7 @@ $$SS - SS' = (x_5 - x_4)(\bar{x}_R - \bar{x}_L + \bar{x}_R' - \bar{x}_L')$$
 
 By assumption, we have $x_5 - x_4  \ge 0$ and $\bar{x}_R - \bar{x}_L \ge 0$. The term $\bar{x}_R' - \bar{x}_L'$ is also greater than zero for obvious reason. In other words, we just made $SS$ smaller by swapping.
 </details>
-
-
+\
 The implication, however, is this: If you want to find the best $(L, R)$ globally, you should always start with a sorted $\mathbf{y}$. Because only a sorted $\mathbf{y}$ can _guarantee_ that $L \lhd R$, which is a necessary (but not sufficient) condition for minimizing $SS$.
 
 _To be continued in the next post._
