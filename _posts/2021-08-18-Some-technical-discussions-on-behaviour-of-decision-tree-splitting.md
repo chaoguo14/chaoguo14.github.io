@@ -78,15 +78,31 @@ Here comes the main result.
 The proof involves some tedious-but-not-difficult algebra, so we omit the full proof.
 
 <details>
-  <summary>Click to expand!</summary>
-  
-  ## Heading
-  1. A numbered
-  2. list
-     * With some
-     * Sub bullets
-</details>
+  <summary> See proof. </summary>
+Without losing generality, we assume the left partition $L = \\{x_1,x_2,x_3,x_5\\}$, and $R = \\{x_4,x_6,x_7\\}$. Denote the average of $L$ as $\bar{x}\_L$ and the average of $R$ as $\bar{x}\_R$.
 
+We assume that both $L$ and $R$ are sorted in ascending order, $\bar{x}\_L \le \bar{x}\_R$, and that $x_5 \ge x_4$.
+
+Before we swap $x_4$ and $x_5$, the $SS$ is
+
+$$SS = (x_1 - \bar{x}\_L)^2 + \cdots + + (x_5 - \bar{x}\_L)^2 + \cdots + (x_4 - \bar{x}\_R)^2 + \cdots + (x_7 - \bar{x}\_R)^2$$
+
+After we swap them, then SS becomes
+
+$$SS' = (x_1 - \bar{x}\_L')^2 + \cdots (x_4 - \bar{x}\_L')^2 + \cdots + (x_5 - \bar{x}\_R')^2 + \cdots + (x_7 - \bar{x}\_R')^2$$
+
+where $\bar{x}\_L' = \frac{1}{4} (x_1 + x_2 + x_3 + x_4)$, and $\bar{x}\_R'$ is defined similarly.
+
+Using the identity $\sum (x_i - \bar{x}\_n)^2 = \sum x_i^2 - n \bar{x}\_n^2$, and subtract $SS'$ from $SS$, we have
+
+$$SS - SS' = (x_5^2 - x_4^2 - 4 \bar{x}\_L^2 + 4 \bar{x}\_L'^2) + (x_4^2 - x_5^2 - 3 \bar{x}\_R^2 + 3 \bar{x}\_R'^2)$$
+
+After some algebra, we end up with
+
+$$SS - SS' = (x_5 - x_4)(\bar{x}\_R - \bar{x}\_L + \bar{x}\_R' - \bar{x}\_L')$$
+
+By assumption, we have $x_5 - x_4  \ge 0$ and $\bar{x}\_R - \bar{x}\_L \ge 0$. The term $\bar{x}\_R' - \bar{x}\_L'$ is also greater than zero for obvious reason. In other words, we just made $SS$ smaller by swapping.
+</details>
 
 The implication, however, is this: If you want to find the best $(L, R)$ globally, you should always start with a sorted $\mathbf{y}$. Because only a sorted $\mathbf{y}$ can _guarantee_ that $L \lhd R$, which is a necessary (but not sufficient) condition for minimizing $SS$.
 
