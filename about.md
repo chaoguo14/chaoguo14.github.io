@@ -5,9 +5,19 @@ title: About
 
 Hi there! Thanks for visiting my blog.
 
-My name is Chao (IPA: ʈʂʰau1). I work at [Munich Re](https://www.munichre.com/en/homepage/index.html) as a Data Scientist. I have also worked at [McKinsey & Company](https://www.mckinsey.com/) as an Advanced Analytics Analyst.
+My name is Chao (IPA: ʈʂʰau1). I am enthusiastic about statistical modeling, machine learning, and computer science.
 
-I became interested in machine learning and mathematical statistics while pursuing my B.S. in Mathematics at [UCLA](https://www.math.ucla.edu/). After graduating from UCLA, I went to [Rutgers](https://stat.rutgers.edu/) to take doctoral-level courses, and got my M.S. in Statistics. Currently, I am attending the [OMSCS](https://omscs.gatech.edu/) program offered by Georgia Tech.
+### Education
+- [OMSCS](https://omscs.gatech.edu/) program offered by Georgia Tech
+- M.S. in Statistics from [Rutgers University](https://stat.rutgers.edu/)
+- B.S. in Mathematics from [UCLA](https://www.math.ucla.edu/)
+
+### Jobs
+- Data Scientist at [Munich Re US](https://www.munichre.com/en/homepage/index.html)
+- Advanced Analytics Analyst at [McKinsey & Company](https://www.mckinsey.com/)
+
+### Conference and Presentation
+- Presentation _Measuring Changes in Inflation: A Non-Technical Discussion of Two Techniques_ at 2021 Virtual Casualty Loss Reserve Seminar organized by [CAS](casact.org).
 
 Please feel free to connect to me on [LinkedIn](https://www.linkedin.com/in/cguo/).
 
