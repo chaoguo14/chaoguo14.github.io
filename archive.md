@@ -3,7 +3,7 @@ layout: page
 title: Archive
 ---
 
-{% assign all_years = "2021,2020,2019" | split: "," %}
+{% assign all_years = "2022,2021,2020,2019" | split: "," %}
 {% for y in all_years %}
 - {{ y }}
 {% for post in site.posts %}
