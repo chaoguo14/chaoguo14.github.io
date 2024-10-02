@@ -13,13 +13,13 @@ Following convention, let's denote the treatment indicator for each unit $i$ as 
 
 Now, the observed outcome $D_i$ is
 
-$$D_i (T_i) = \mathbf{1}_{\{T_i = 0\}}\cdot D_i(0) + \mathbf{1}_{\{T_i = 1\}}\cdot D_i(1)$$
+$$ D_i (T_i) = \mathbf{1}_{\{T_i = 0\}}\cdot D_i(0) + \mathbf{1}_{\{T_i = 1\}}\cdot D_i(1) $$
 
 Obviously, observed outcome depends on the treatment it receives. For a fixed unit $i$, $D_i$ is either $D_i(0)$ or $D_i(1)$.
 
 We can also write the observed outcome as
 
-$$D_i = D_i(0) + \mathbf{1}_{\{T_i = 1\}} \cdot [D_i(1) - D_i(0)]$$
+$$ D_i = D_i(0) + \mathbf{1}_{\{T_i = 1\}} \cdot [D_i(1) - D_i(0)] $$
 
 In other words, we can express the observed outcome in terms of the individual treatment effect (ICE), $D_i(1) - D_i(0)$. This quantity is very difficult to estimate, and might not be needed after all.
 
@@ -34,12 +34,12 @@ $$
 
 Let's take conditional expectation on both sides. When we condition on $X$, terms like  $\mathbb{E}[\cdot \mid X]$ behave like constants and can be pulled out directly. So
 
-$$\mathbb{E}[D\mid X]=\mathbb{E}[D(0)\mid X] + \mathbb{E}[\mathbf{1}_{\{T=1\}}] \mid X]\cdot  \mathbb{E}\left[D(1) - D(0) \mid X\right]\$$
+$$ \mathbb{E}[D\mid X]=\mathbb{E}[D(0)\mid X] + \mathbb{E}[\mathbf{1}_{\{T=1\}}] \mid X]\cdot  \mathbb{E}\left[D(1) - D(0) \mid X\right] $$
 
 But since it's an indicator function in the expectation, the conditional expectation $\mathbb{E}[\mathbf{1}_{\{T=1\}}] \mid X]$ really is just the conditional _probability_ of receiving treatment instead of control. Let $p_T(t) = \mathbb{P}\left[T=t\right]$. So let's rewrite it as
 
 
-$$\mathbb{E}[D\mid X]=\mathbb{E}[D(0)\mid X] +  p_T(1 \mid X)\cdot  \mathbb{E}\left[D(1) - D(0) \mid X\right]\$$
+$$ \mathbb{E}[D\mid X]=\mathbb{E}[D(0)\mid X] +  p_T(1 \mid X)\cdot  \mathbb{E}\left[D(1) - D(0) \mid X\right] $$
 
 Here comes the interesting part. We can group terms by their treatment status. Under the ignorability assumption, we finally arrive at
 
@@ -54,7 +54,7 @@ $$
     D - m = \left(\mathbf{1}_{T = 1} - p_T(1)\right) \cdot \mathbb{E}\left[ D(1) - D(0)\mid X\right] + \epsilon
 $$
 
-Assuming that $m(\cdot)$ and $p_T(\cdot)$ are known, then there is a natural estimator for $\mathbb{E}\left[D(1) - D(0)\right]$. Namely, we can run a regression of $D_i-m(X_i)$ with respect to $\left[\mathbf{1}_{\{T_i=1\}} - p_{T_i}(1)\right] \phi(X)$ where $\phi(\cdot)$ is some function. For simplicity, we will assume that the lift is linear in covariate, even though this is not required to achieve good asymptotic consistency. That is,
+Assuming that $m(\cdot)$ and $p_T(\cdot)$ are known, then there is a natural estimator for $\mathbb{E}\left[D(1) - D(0)\right]$. Namely, we can run a regression of $ D_i-m(X_i) $ with respect to $ \[\mathbf{1}_{\{T_i=1\}} - p_{T_i}(1)\] \phi(X)$ where $\phi(\cdot)$ is some function. For simplicity, we will assume that the lift is linear in covariate, even though this is not required to achieve good asymptotic consistency. That is,
 $$
     \mathbb{E}\left[D(1) - D(0)\mid X\right] = X^\top \beta.
 $$
