@@ -36,7 +36,7 @@ Let's take conditional expectation on both sides. When we condition on $X$, term
 
 $$ \mathbb{E}[D\mid X]=\mathbb{E}[D(0)\mid X] + \mathbb{E}[\mathbf{1}_{\{T=1\}} \mid X]\cdot  \mathbb{E}\left[D(1) - D(0) \mid X\right] $$
 
-But since it's an indicator function in the expectation, the conditional expectation $ \mathbb{E}[\mathbf{1}\\_{\{T=1\}}] \mid X] $ really is just the conditional _probability_ of receiving treatment instead of control. Let $p_T(t) = \mathbb{P}\left[T=t\right]$. So let's rewrite it as
+But since it's an indicator function in the expectation, the conditional expectation $ \mathbb{E}[\mathbf{1}\\_{\{T=1\}} \mid X] $ really is just the conditional _probability_ of receiving treatment instead of control. Let $p_T(t) = \mathbb{P}\left[T=t\right]$. So let's rewrite it as
 
 
 $$ \mathbb{E}[D\mid X]=\mathbb{E}[D(0)\mid X] +  p_T(1 \mid X)\cdot  \mathbb{E}\left[D(1) - D(0) \mid X\right] $$
@@ -50,14 +50,10 @@ $$
 We call this quantity __mean outcome__ and denote it as $m(X)$, and the reason should be clear. The conditional expectation of outcome $\mathbb{E}\left[D\mid X\right]$ can be viewed as an weighted average. We weigh each potential outcome by their propensity score (i.e. probability of receiving the corresponding treatment).
 
 Subtract mean outcome from both sides of equation (2) and recall that $p_T(0) + p_t(1) = 1$, we have
-$$
-    D - m = \left(\mathbf{1}_{T = 1} - p_T(1)\right) \cdot \mathbb{E}\left[ D(1) - D(0)\mid X\right] + \epsilon
-$$
+$$ D - m = \left(\mathbf{1}_{T = 1} - p_T(1)\right) \cdot \mathbb{E}\left[ D(1) - D(0)\mid X\right] + \epsilon $$
 
-Assuming that $m(\cdot)$ and $p_T(\cdot)$ are known, then there is a natural estimator for $\mathbb{E}\left[D(1) - D(0)\right]$. Namely, we can run a regression of $ D_i-m(X_i) $ with respect to $ \[\mathbf{1}_{\{T_i=1\}} - p_{T_i}(1)\] \phi(X)$ where $\phi(\cdot)$ is some function. For simplicity, we will assume that the lift is linear in covariate, even though this is not required to achieve good asymptotic consistency. That is,
-$$
-    \mathbb{E}\left[D(1) - D(0)\mid X\right] = X^\top \beta.
-$$
+Assuming that $m(\cdot)$ and $p_T(\cdot)$ are known, then there is a natural estimator for $\mathbb{E}\left[D(1) - D(0)\right]$. Namely, we can run a regression of $ D_i-m(X_i) $ with respect to $ \[\mathbf{1}\\_{\{T_i=1\}} - p_{T_i}(1)\] \phi(X)$ where $\phi(\cdot)$ is some function. For simplicity, we will assume that the lift is linear in covariate, even though this is not required to achieve good asymptotic consistency. That is,
+$$ \mathbb{E}\left[D(1) - D(0)\mid X\right] = X^\top \beta $$
 
 In practice, $m(\cdot)$ and $p_T(\cdot)$ have to be estimated. In terms of model class, we have many choices. Neural networks can be used to model the mean outcome $m(\cdot)$, while logistic regression can be used to model propensity score $p_T(\cdot)$.
 
