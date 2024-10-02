@@ -34,9 +34,9 @@ $$
 
 Let's take conditional expectation on both sides. When we condition on $X$, terms like  $\mathbb{E}[\cdot \mid X]$ behave like constants and can be pulled out directly. So
 
-$$ \mathbb{E}[D\mid X]=\mathbb{E}[D(0)\mid X] + \mathbb{E}[\mathbf{1}_{\{T=1\}}] \mid X]\cdot  \mathbb{E}\left[D(1) - D(0) \mid X\right] $$
+$$ \mathbb{E}[D\mid X]=\mathbb{E}[D(0)\mid X] + \mathbb{E}[\mathbf{1}_{\{T=1\}} \mid X]\cdot  \mathbb{E}\left[D(1) - D(0) \mid X\right] $$
 
-But since it's an indicator function in the expectation, the conditional expectation $ \mathbb{E}[\mathbf{1}\_{\{T=1\}}] \mid X] $ really is just the conditional _probability_ of receiving treatment instead of control. Let $p_T(t) = \mathbb{P}\left[T=t\right]$. So let's rewrite it as
+But since it's an indicator function in the expectation, the conditional expectation $ \mathbb{E}[\mathbf{1}\\_{\{T=1\}}] \mid X] $ really is just the conditional _probability_ of receiving treatment instead of control. Let $p_T(t) = \mathbb{P}\left[T=t\right]$. So let's rewrite it as
 
 
 $$ \mathbb{E}[D\mid X]=\mathbb{E}[D(0)\mid X] +  p_T(1 \mid X)\cdot  \mathbb{E}\left[D(1) - D(0) \mid X\right] $$
