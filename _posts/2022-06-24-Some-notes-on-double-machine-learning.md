@@ -54,7 +54,8 @@ Subtract mean outcome from both sides of equation (2) and recall that $p_T(0) + 
 
 $$ D - m = \left(\mathbf{1}_{T = 1} - p_T(1)\right) \cdot \mathbb{E}\left[ D(1) - D(0)\mid X\right] + \epsilon $$
 
-Assuming that $m(\cdot)$ and $p_T(\cdot)$ are known, then there is a natural estimator for $\mathbb{E}\left[D(1) - D(0)\right]$. Namely, we can run a regression of $ D_i-m(X_i) $ with respect to $ \[\mathbf{1}\\_{\{T_i=1\}} - p_{T_i}(1)\] \phi(X)$ where $\phi(\cdot)$ is some function. For simplicity, we will assume that the lift is linear in covariate, even though this is not required to achieve good asymptotic consistency. That is,
+Assuming that $m(\cdot)$ and $p_T(\cdot)$ are known, then there is a natural estimator for $\mathbb{E}\left[D(1) - D(0)\right]$. Namely, we can run a regression of $ D_i-m(X_i) $ with respect to $ \[\mathbf{1}\_{\{T_i=1\}} - p\_{T_i}(1)\] \phi(X)$ where $\phi(\cdot)$ is some function. For simplicity, we will assume that the lift is linear in covariate, even though this is not required to achieve good asymptotic consistency. That is,
+
 $$ \mathbb{E}\left[D(1) - D(0)\mid X\right] = X^\top \beta $$
 
 In practice, $m(\cdot)$ and $p_T(\cdot)$ have to be estimated. In terms of model class, we have many choices. Neural networks can be used to model the mean outcome $m(\cdot)$, while logistic regression can be used to model propensity score $p_T(\cdot)$.
