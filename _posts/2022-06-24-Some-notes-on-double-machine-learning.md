@@ -28,6 +28,7 @@ In other words, we can express the observed outcome in terms of the individual t
 Let's talk about how double machine learning works now. Again, we have two possible scenarios for each unit: control vs treatment. The treatment assignment of unit $i$ (i.e. whether unit $i$ is under control or not) itself is random, and we denote it as $T_i$. Once the treatment assignment is fixed, the potential outcomes $D_i(0)$ and $D_i(1)$ are also random, and depend on a set of covariates $X_i$. In other words, $D_i(0), D_i(1)$ as well as $T_i$ are all random variables.
 
 Dropping the index $i$, we assume that we can write $D$ in terms of conditional expectations plus a white noise. That is,
+
 $$
     D = \mathbb{E}\left[D(0)\mid X\right] + \mathbf{1}_{\{T=1\}}\cdot \mathbb{E}\left[D(1) - D(0) \mid X\right] + \epsilon
 $$
@@ -50,6 +51,7 @@ $$
 We call this quantity __mean outcome__ and denote it as $m(X)$, and the reason should be clear. The conditional expectation of outcome $\mathbb{E}\left[D\mid X\right]$ can be viewed as an weighted average. We weigh each potential outcome by their propensity score (i.e. probability of receiving the corresponding treatment).
 
 Subtract mean outcome from both sides of equation (2) and recall that $p_T(0) + p_t(1) = 1$, we have
+
 $$ D - m = \left(\mathbf{1}_{T = 1} - p_T(1)\right) \cdot \mathbb{E}\left[ D(1) - D(0)\mid X\right] + \epsilon $$
 
 Assuming that $m(\cdot)$ and $p_T(\cdot)$ are known, then there is a natural estimator for $\mathbb{E}\left[D(1) - D(0)\right]$. Namely, we can run a regression of $ D_i-m(X_i) $ with respect to $ \[\mathbf{1}\\_{\{T_i=1\}} - p_{T_i}(1)\] \phi(X)$ where $\phi(\cdot)$ is some function. For simplicity, we will assume that the lift is linear in covariate, even though this is not required to achieve good asymptotic consistency. That is,
