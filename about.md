@@ -12,7 +12,8 @@ My name is Chao (IPA: ʈʂʰau1). I am enthusiastic about statistical modeling, 
 - B.S. in Mathematics from [UCLA](https://www.math.ucla.edu/)
 
 ### Jobs
-- Data Scientist, Forecasting at [Amazon](https://www.amazon.com/)
+- Data Scientist, Research at [Google](https://blog.google/products/ads-commerce/turning-data-into-results-with-data-driven-attribution/)
+- Data Scientist, Forecasting at [Amazon](https://www.amazon.science/tag/supply-chain-optimization-technologies)
 - Senior Data Scientist at [Munich Re US](https://www.munichre.com/en/homepage/index.html)
 - Advanced Analytics Analyst at [McKinsey & Company](https://www.mckinsey.com/)
 
